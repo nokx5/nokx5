@@ -1,7 +1,6 @@
 - 👋 Hi, I’m @nokx5
 - 👀 I’m interested in physics, mathematics, biology, chemistry and of course computer science.
 - 🌱 I’m currently learning vibraphone
-- 💞️ I’m looking to collaborate when I will have more time
 - 📫 How to reach me info@nokx.ch
 
 <!---
