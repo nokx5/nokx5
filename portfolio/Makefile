@@ -1,4 +1,4 @@
-HUGO_OPTS := # Deployement: --baseURL https://nokx5.github.io/golden_cpp/
+HUGO_OPTS := # Deployement: --baseURL https://www.nokx.ch
 THEME_NAME := etch
 CURRENTDIR := $(shell pwd)
 DESTINATION := $(CURRENTDIR)
@@ -21,3 +21,4 @@ doc-build: doc-assets
 .PHONY: clean
 clean:
 	rm -rf $(DESTINATION)/public
+	rm -rf $(DESTINATION)/resources

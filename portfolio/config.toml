@@ -1,49 +1,122 @@
-baseURL = "https://www.nokx.ch"
-title = "Home"
-theme = "etch"
-languageCode = "en-US"
-enableInlineShortcodes = true
-pygmentsCodeFences = true
-pygmentsUseClasses = true
+languageCode = "en-us"
+baseUrl = "http://localhost"
+theme = "anubis"
+paginate = 10
+# disqusShortname = "yourdiscussshortname"
+# googleAnalytics = "G-12345"
+enableRobotsTXT = true
+# enableInlineShortcodes = true
+# pygmentsCodeFences = true
+# pygmentsUseClasses = true
 enableEmoji = true
 
 [params]
-description = "Welcome To Nokx Website"
-copyright = "Copyright © 202X nokx"
-dark = "auto"
-highlight = true
+author = "Noam Kestin"
+email = "info@nokx.ch"
+avatar = "/images/avatar.png"
+description = "nokx website"
+# images = [ "images/og-featured.png" ]
+# customCSS = [ "css/my.css" ]
+# customJS = [ "js/main.js" ]
+dateFormat = "2006-01-02"
+paginationSinglePost = true
+style = "dark-without-switcher"
+readMore = false
+disableSummary = false
+utterancesRepo = ""
+utterancesTheme = ""
+utterancesIssue = ""
+utterancesLabel = ""
+  [params.webmentions]
+    url = "https://nokx.ch"
+    login = "hugo-theme-anubis"
+    pingback = false
 
+  [[params.social]]
+    id = "email"
+    name = "info@nokx.ch"
+  [[params.social]]
+    id = "linkedin"
+    name = "noam-kestin-05nk"
+  [[params.social]]
+    id = "github"
+    name = "nokx5"
+  [[params.social]]
+    id = "telegram"
+    name = "NonoKoukouk"
+
+  [params.navigation]
+    help = "Help"
+    
 [menu]
-[[menu.main]]
-identifier = "more"
-name = "more"
-title = "about"
-url = "/about/"
-weight = 20
-
-[[menu.main]]
-identifier = "blog"
-name = "blog"
-title = "blog"
-url = "/blog/"
-weight = 15
-
-[[menu.main]]
-identifier = "software"
-name = "software"
-title = "software"
-url = "/software/"
-weight = 18
-
-[permalinks]
-posts = "/:title/"
+  [[menu.main]]
+    identifier = "blog"
+    name = "blog"
+    title = "blog"
+    url = "/blog/"
+    weight = 15
+  
+  [[menu.main]]
+    identifier = "software"
+    name = "software"
+    title = "software"
+    url = "/software/"
+    weight = 18
+  
+  [[menu.main]]
+    identifier = "music"
+    name = "music"
+    title = "music"
+    url = "/music/"
+    weight = 26
+  
+  [[menu.main]]
+    identifier = "contact"
+    name = "contact"
+    title = "contact"
+    url = "/contact/"
+    weight = 30
 
 [markup.goldmark.renderer]
-# Allow HTML in Markdown
-unsafe = true
+  unsafe = true # enable raw HTML in Markdown
 
 [markup.tableOfContents]
-ordered = true
+  ordered = false
 
 [minify] # white space issue
   disableHTML = true
+
+
+
+defaultContentLanguage = "en"
+[languages]
+  [languages.en]
+    contentDir = "content/en"
+    title = "Home"
+    weight = 1
+    # [languages.en.params]
+    #   linkedin = "https://linkedin.com/whoever"
+  [languages.fr]
+    contentDir = "content/fr"
+    title = "Chez Nokx"
+    weight = 2
+    # [languages.fr.params]
+    #   linkedin = "https://linkedin.com/fr/whoever"
+    #   [languages.fr.params.navigation]
+    #     help = "Aide"
+  [languages.he]
+    contentDir = "content/he"
+    title = "nokx ברוכים הבאים ל "
+    author = "בר"
+    weight = 3
+    # [languages.fr.params]
+    #   linkedin = "https://linkedin.com/fr/whoever"
+    #   [languages.fr.params.navigation]
+    #     help = "Aide"
+  [languages.de]
+    contentDir = "content/de"
+    title = "Willkommen !"
+    weight = 4
+
+# disableLanguages = ["he", "de"]
+# translationKey= "contact"
