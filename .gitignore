@@ -59,7 +59,6 @@ tramp
 
 ## HUGO ########################################################################
 
-public/
-resources/
-archetypes/
-themes/
+portfolio/public/
+portfolio/resources/
+portfolio/archetypes/
