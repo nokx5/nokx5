@@ -1,0 +1,49 @@
+baseURL = "https://www.nokx.ch"
+title = "Home"
+theme = "etch"
+languageCode = "en-US"
+enableInlineShortcodes = true
+pygmentsCodeFences = true
+pygmentsUseClasses = true
+enableEmoji = true
+
+[params]
+description = "Welcome To Nokx Website"
+copyright = "Copyright © 202X nokx"
+dark = "auto"
+highlight = true
+
+[menu]
+[[menu.main]]
+identifier = "more"
+name = "more"
+title = "about"
+url = "/about/"
+weight = 20
+
+[[menu.main]]
+identifier = "blog"
+name = "blog"
+title = "blog"
+url = "/blog/"
+weight = 15
+
+[[menu.main]]
+identifier = "software"
+name = "software"
+title = "software"
+url = "/software/"
+weight = 18
+
+[permalinks]
+posts = "/:title/"
+
+[markup.goldmark.renderer]
+# Allow HTML in Markdown
+unsafe = true
+
+[markup.tableOfContents]
+ordered = true
+
+[minify] # white space issue
+  disableHTML = true
