@@ -1,8 +1,7 @@
-{ pkgs ? import <nixpkgs> { } }:
+{ pkgs ? import <nixpkgs> { config = { allowUnfree = true; }; } }:
 
 with pkgs;
-
 mkShell {
-  nativeBuildInputs = [ typora git ];
+  nativeBuildInputs = [ typora ];
   buildInputs = [ hugo ];
 }
