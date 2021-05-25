@@ -41,9 +41,9 @@ utterancesLabel = ""
   [[params.social]]
     id = "github"
     name = "nokx5"
-  [[params.social]]
-    id = "telegram"
-    name = "NonoKoukouk"
+  # [[params.social]]
+  #   id = "telegram"
+  #   name = "NonoKoukouk"
 
   [params.navigation]
     help = "Help"
