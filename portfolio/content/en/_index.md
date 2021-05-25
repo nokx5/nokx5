@@ -4,7 +4,7 @@
 
 Hi ! 👋
 
-![https://www.novaextermination.com/wp-content/uploads/2019/02/exterminateur-raton-laveur.jpg](images/raccoon.jpg)
+![https://www.novaextermination.com/wp-content/uploads/2019/02/exterminateur-raton-laveur.jpg](raccoon.jpg)
 
 I am a software engineer with a background in quantum mechanics and in
 AI optimization (tensorflow/pytorch). I am currently moving from
