@@ -15,9 +15,9 @@ I use on-going projects symbols below : :cloud:=considered, :car:=started, :hamm
 
 ***
 
-The important things with coding is to have some on-going projects. However it is generally difficult to code on multiple projects at the same time. :smiley_cat: 
+The important things with coding is to have some on-going projects. However it is generally difficult to code on very different projects at the same time. :smiley_cat: 
 
-I'm currently fascinated by [nix :snowflake:](https://nixos.org/)  and consider it as a possible solution for code reproducibility in science. I like creating Docker images or AppImage directly from nix, this concept of one language to rule them all is very promising. I'm now concerned about moving to cloud services such as AWS or Azure and becoming a CloudOps.
+I'm currently fascinated by [nix :snowflake:](https://nixos.org/)  and consider it as a possible solution for code reproducibility in science. I like creating Docker or App images directly from nix, this concept of one language to rule them all sounds very promising. I'm now concerned about moving to cloud services such as AWS or Azure and becoming a CloudOps.
 
 
 ### List of nokx software
@@ -33,7 +33,7 @@ I'm currently fascinated by [nix :snowflake:](https://nixos.org/)  and consider 
 
 [:star: dynamic_bitset](https://github.com/nokx5/dynamic_bitset)  |  :books: ~~**doc**~~  |  *last job interview exercise*
 
-[:star: golden_cpp](https://github.com/nokx5/golden_cpp) | [:books: **doc**](https://nokx5.github.io/golden_python) | *template for C/C++ projects* 
+[:star: golden_cpp](https://github.com/nokx5/golden_cpp) | [:books: **doc**](https://nokx5.github.io/golden_cpp) | *template for C/C++ projects* 
 
 ***
 **C++/Python projects**
@@ -50,7 +50,7 @@ I'm currently fascinated by [nix :snowflake:](https://nixos.org/)  and consider 
 
 [:star: golden_python](https://github.com/nokx5/golden_python) | [:books: **doc**](https://nokx5.github.io/golden_python) | *template for python projects* 
 
-[:star: speedo](https://github.com/nokx5/speedo) | :books: **doc (swagger API)** | *speedo is a web framework using `fastapi` connected to a `postgresql` database. A python client library using `pycurl` is provided with a local sqlite mocker for external dependencies.*
+[:star: speedo](https://github.com/nokx5/speedo) | :books: **doc (swagger API)** | *speedo is a web framework using `fastapi` connected to a `postgresql` database. A python client library using `pycurl` is provided with a mocker using in-memory sqlite for external dependencies.*
 
 ---
 
