@@ -148,28 +148,28 @@ enableEmoji = true
     name = "בלוג"
     title = "בלוג"
     url = "/blog/"
-    weight = 10
+    weight = 20
   
   [[languages.he.menu.main]]
     identifier = "software"
-    name = "תוכנוה"
-    title = "תוכנוה"
+    name = "תוכנות"
+    title = "תוכנות"
     url = "../software/"
-    weight = 11
+    weight = 19
   
   [[languages.he.menu.main]]
     identifier = "music"
     name = "ג'ז"
     title = "ג'ז"
     url = "/music/"
-    weight = 12
+    weight = 18
   
   [[languages.he.menu.main]]
     identifier = "contact"
-    name = "contact"
-    title = "contact"
+    name = "קשר"
+    title = "קשר"
     url = "../contact/"
-    weight = 13
+    weight = 17
 
 
 [languages.de]
