@@ -115,7 +115,7 @@ enableEmoji = true
     identifier = "software"
     name = "logiciel"
     title = "logiciel"
-    url = "/software/"
+    url = "../software/"
     weight = 11
   
   [[languages.fr.menu.main]]
@@ -129,7 +129,7 @@ enableEmoji = true
     identifier = "contact"
     name = "contact"
     title = "contact"
-    url = "/contact/"
+    url = "../contact/"
     weight = 13
 
 
@@ -168,7 +168,7 @@ enableEmoji = true
     identifier = "contact"
     name = "contact"
     title = "contact"
-    url = "/contact/"
+    url = "../contact/"
     weight = 13
 
 
@@ -189,7 +189,7 @@ enableEmoji = true
     identifier = "software"
     name = "Software"
     title = "Software"
-    url = "/software/"
+    url = "../software/"
     weight = 11
   
   [[languages.de.menu.main]]
@@ -203,7 +203,7 @@ enableEmoji = true
     identifier = "contact"
     name = "Kontakt"
     title = "Kontakt"
-    url = "/contact/"
+    url = "../contact/"
     weight = 13
 
 # disableLanguages = ["he", "de"]
