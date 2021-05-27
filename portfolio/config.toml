@@ -3,10 +3,10 @@ defaultContentLanguage = "en"
 defaultContentLanguageInSubdir = true
 baseUrl = "http://localhost"
 theme = "anubis"
-paginate = 10
+paginate = 3
 disqusShortname = ""
 googleAnalytics = ""
-enableRobotsTXT = true
+# enableRobotsTXT = true
 # enableInlineShortcodes = true
 # pygmentsCodeFences = true
 # pygmentsUseClasses = true
@@ -24,15 +24,15 @@ enableEmoji = true
   paginationSinglePost = true
   style = "dark-without-switcher"
   readMore = false
-  disableSummary = false
+  # disableSummary = false
   utterancesRepo = ""
   utterancesTheme = ""
   utterancesIssue = ""
   utterancesLabel = ""
-    [params.webmentions]
-      # url = "https://nokx.ch"
-      login = "hugo-theme-anubis"
-      pingback = false
+    # [params.webmentions]
+    #   # url = "https://nokx.ch"
+    #   login = "hugo-theme-anubis"
+    #   pingback = false
 
   [[params.social]]
     id = "email"
@@ -47,18 +47,9 @@ enableEmoji = true
   #   id = "telegram"
   #   name = "NonoKoukouk"
 
-  [params.navigation]
-    help = "Help"
+  # [params.navigation]
+  #   help = "Help"
     
-
-[markup.goldmark.renderer]
-  unsafe = true # enable raw HTML in Markdown
-
-[markup.tableOfContents]
-  ordered = false
-
-[minify] # white space issue
-  disableHTML = true
 
 
 
@@ -193,3 +184,13 @@ enableEmoji = true
 [taxonomies]
 category = "categories"
 tag = "tags"
+
+
+[markup.goldmark.renderer]
+  unsafe = true # enable raw HTML in Markdown
+
+[markup.tableOfContents]
+  ordered = false
+
+[minify] # white space issue
+  disableHTML = true
