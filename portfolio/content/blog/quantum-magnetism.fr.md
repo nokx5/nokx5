@@ -35,9 +35,12 @@ température de théories analytiques établies à basse dimension sous le
 nom de liquide de Luttinger (TLL).
 
 
-## Scientific codes
+## Simulations scientifiques
 
-During my PhD time, I had the opportunity to clean and reinstall the research group's cluster and to run intensive scientific simulations on it. I felt very much concerned about reproducibility of codes in science.
+J'ai eu l'opportunité durant ma thèse de nettoyer et réinstaller un
+cluster de 700 processeur ainsi que d'y exécuter mes
+simulations. Toute cette période m'a fait prendre conscience de
+l'importance d'avoir des codes reproductibles au sein de l'académie.
 
 
 
