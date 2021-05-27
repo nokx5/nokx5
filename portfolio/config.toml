@@ -1,5 +1,6 @@
 languageCode = "en-us"
 defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = true
 baseUrl = "http://localhost"
 theme = "anubis"
 paginate = 10
