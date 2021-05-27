@@ -2,11 +2,12 @@
 author = "nokx"
 title = "Quantum Magnetism"
 date = "2020-01-01"
-description = "Short resume of my PhD"
-tags = [ "quantum"]
+description = "Résumé de ma thèse"
 favorite = true
-
+translationKey = "PhD"
 +++
+
+SUPER LIEN : 
 
 I had the great opportunity to work with a [very talented physicist](https://www.lumni.fr/video/le-verre-par-thierry-giamarchi-physicien). I am very gratefull to [Pr. Thierry Giamarchi](https://en.wikipedia.org/wiki/Thierry_Giamarchi) for giving me the opportunity to work by his side on quantum materials. During my research time at the [Department of Quantum Matter](https://dqmp.unige.ch/giamarchi/) of [University of Geneva](https://www.unige.ch/en), I focused on the physics of strongly correlated quantum antiferromagnets with `meV` energy scales coupling. 
 

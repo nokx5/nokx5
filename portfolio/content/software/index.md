@@ -1,10 +1,10 @@
----
-title: ""
-date: 2021-05-22T11:34:23+02:00
-tags: [software]
-featured_image: ""
-description: "About nokx software"
----
++++
+title = ""
+date = 2021-05-22T11:34:23+02:00
+tags = [ "software" ]
+featured_image = ""
+description = "About nokx software"
++++
 
 I like to program because I like to organize data, in particular when it comes to details. My philosophy is  "make it works, then optimize". I like working with computers because of the rules they provide (like in a game). Algorithms and design patterns are beautiful, so don't mess them. I like working in team on complex pipelines.
 

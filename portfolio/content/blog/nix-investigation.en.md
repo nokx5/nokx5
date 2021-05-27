@@ -5,6 +5,7 @@ date = "2020-07-01"
 description = "Short resume of my PhD"
 tags = [ "nix" ]
 favorite = true
+translationKey = "nix1"
 +++
 
 Nix is great.

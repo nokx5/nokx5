@@ -63,7 +63,6 @@ enableEmoji = true
 
 [languages.en]
   languageName = "English"
-  contentDir = "content/en"
   title = "Home"
   weight = 1
   [[menu.main]]
@@ -97,7 +96,6 @@ enableEmoji = true
 
 [languages.fr]
   languageName = "Français"
-  contentDir = "content/fr"
   title = "Chez Nokx"
   weight = 2
   # [languages.fr.params]
@@ -115,7 +113,7 @@ enableEmoji = true
     identifier = "software"
     name = "logiciel"
     title = "logiciel"
-    url = "../software/"
+    url = "/software/"
     weight = 11
   
   [[languages.fr.menu.main]]
@@ -129,14 +127,14 @@ enableEmoji = true
     identifier = "contact"
     name = "contact"
     title = "contact"
-    url = "../contact/"
+    url = "/contact/"
     weight = 13
 
 
 [languages.he]
+  languagedirection = "rtl"
   languageName = "עברית"
-  contentDir = "content/he"
-  title = "nokx ברוכים הבאים ל "
+  title = "nokx ברוכים הבאים ל"
   author = "נועם קסטין"
   weight = 3
   # [languages.fr.params]
@@ -154,7 +152,7 @@ enableEmoji = true
     identifier = "software"
     name = "תוכנות"
     title = "תוכנות"
-    url = "../software/"
+    url = "/software/"
     weight = 19
   
   [[languages.he.menu.main]]
@@ -168,13 +166,12 @@ enableEmoji = true
     identifier = "contact"
     name = "קשר"
     title = "קשר"
-    url = "../contact/"
+    url = "/contact/"
     weight = 17
 
 
 [languages.de]
   languageName = "Deutsch"
-  contentDir = "content/de"
   title = "Willkommen !"
   weight = 4
 
@@ -189,7 +186,7 @@ enableEmoji = true
     identifier = "software"
     name = "Software"
     title = "Software"
-    url = "../software/"
+    url = "/software/"
     weight = 11
   
   [[languages.de.menu.main]]
@@ -203,8 +200,7 @@ enableEmoji = true
     identifier = "contact"
     name = "Kontakt"
     title = "Kontakt"
-    url = "../contact/"
+    url = "/contact/"
     weight = 13
 
 # disableLanguages = ["he", "de"]
-# translationKey= "contact"

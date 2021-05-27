@@ -4,7 +4,6 @@ date: 2020-05-01
 tags: [music]
 featured_image: ""
 description: "My music hobby"
-
 ---
 
 I started as a young boy playing percussions, then focused on jazz drums :drum: and later on vibraphone :musical_keyboard: as well. I was very lucky to work with a very talented drummer and percussionist  at the [popular music conservatory](https://conservatoirepopulaire.ch/). I will list here some methods we used during my progression with him.
