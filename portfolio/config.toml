@@ -101,19 +101,19 @@ enableEmoji = true
   [[languages.fr.menu.main]]
     name = "journal de bord"
     title = "journal de bord"
-    url = "/fr/blog/"
+    url = "/blog/"
     weight = 10
   
   [[languages.fr.menu.main]]
     name = "logiciel"
     title = "logiciel"
-    url = "/fr/software/"
+    url = "/software/"
     weight = 11
   
   [[languages.fr.menu.main]]
     name = "musique"
     title = "musique"
-    url = "/fr/music/"
+    url = "/music/"
     weight = 12
   
   [[languages.fr.menu.main]]
@@ -136,25 +136,25 @@ enableEmoji = true
   [[languages.he.menu.main]]
     name = "בלוג"
     title = "בלוג"
-    # url = "/blog/"
+    url = "/blog/"
     weight = 20
   
   [[languages.he.menu.main]]
     name = "תוכנות"
     title = "תוכנות"
-    # url = "/software/"
+    url = "/software/"
     weight = 19
   
   [[languages.he.menu.main]]
     name = "ג'ז"
     title = "ג'ז"
-    # url = "/music/"
+    url = "/music/"
     weight = 18
   
   [[languages.he.menu.main]]
     name = "קשר"
     title = "קשר"
-    # url = "/contact/"
+    url = "/contact/"
     weight = 17
 
 
@@ -188,3 +188,7 @@ enableEmoji = true
     weight = 13
 
 # disableLanguages = ["he", "de"]
+
+[taxonomies]
+category = "categories"
+tag = "tags"
