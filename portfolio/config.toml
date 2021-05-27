@@ -1,6 +1,6 @@
 languageCode = "en-us"
 defaultContentLanguage = "en"
-baseUrl = "http://localhost"
+baseUrl = "http://localhost/"
 theme = "anubis"
 paginate = 10
 disqusShortname = ""
@@ -69,30 +69,29 @@ enableEmoji = true
     identifier = "blog"
     name = "blog"
     title = "blog"
-    url = "/blog/"
+    url = "blog/"
     weight = 10
   
   [[menu.main]]
     identifier = "software"
     name = "software"
     title = "software"
-    url = "/software/"
+    url = "software/"
     weight = 11
   
   [[menu.main]]
     identifier = "music"
     name = "music"
     title = "music"
-    url = "/music/"
+    url = "music/"
     weight = 12
   
   [[menu.main]]
     identifier = "contact"
     name = "contact"
     title = "contact"
-    url = "/contact/"
+    url = "contact/"
     weight = 13
-
 
 [languages.fr]
   languageName = "Français"
@@ -106,28 +105,28 @@ enableEmoji = true
     identifier = "blog_fr"
     name = "journal de bord"
     title = "journal de bord"
-    url = "/blog/"
+    url = "blog/"
     weight = 10
   
   [[languages.fr.menu.main]]
     identifier = "software_fr"
     name = "logiciel"
     title = "logiciel"
-    url = "/software/"
+    url = "software/"
     weight = 11
   
   [[languages.fr.menu.main]]
     identifier = "music_fr"
     name = "musique"
     title = "musique"
-    url = "/music/"
+    url = "music/"
     weight = 12
   
   [[languages.fr.menu.main]]
     identifier = "contact_fr"
     name = "contact"
     title = "contact"
-    url = "/contact/"
+    url = "contact/"
     weight = 13
 
 
@@ -145,28 +144,28 @@ enableEmoji = true
     identifier = "blog_he"
     name = "בלוג"
     title = "בלוג"
-    url = "/blog/"
+    url = "blog/"
     weight = 20
   
   [[languages.he.menu.main]]
     identifier = "software_he"
     name = "תוכנות"
     title = "תוכנות"
-    url = "/software/"
+    url = "software/"
     weight = 19
   
   [[languages.he.menu.main]]
     identifier = "music_he"
     name = "ג'ז"
     title = "ג'ז"
-    url = "/music/"
+    url = "music/"
     weight = 18
   
   [[languages.he.menu.main]]
     identifier = "contact_he"
     name = "קשר"
     title = "קשר"
-    url = "/contact/"
+    url = "contact/"
     weight = 17
 
 
@@ -179,28 +178,28 @@ enableEmoji = true
     identifier = "blog_de"
     name = "Blog"
     title = "Blog"
-    url = "/blog/"
+    url = "blog/"
     weight = 10
   
   [[languages.de.menu.main]]
     identifier = "software_de"
     name = "Software"
     title = "Software"
-    url = "/software/"
+    url = "software/"
     weight = 11
   
   [[languages.de.menu.main]]
     identifier = "music_de"
     name = "Musik"
     title = "Musik"
-    url = "/music/"
+    url = "music/"
     weight = 12
   
   [[languages.de.menu.main]]
     identifier = "contact_de"
     name = "Kontakt"
     title = "Kontakt"
-    url = "/contact/"
+    url = "contact/"
     weight = 13
 
 # disableLanguages = ["he", "de"]
