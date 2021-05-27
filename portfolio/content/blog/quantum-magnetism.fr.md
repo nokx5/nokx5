@@ -1,7 +1,7 @@
 +++
 author = "nokx"
-title = "Quantum Magnetism"
-date = "2020-01-01"
+title = "Magnétisme quantique"
+date = "2020-01-02"
 description = "Résumé de ma thèse"
 favorite = true
 translationKey = "PhD"
