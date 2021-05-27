@@ -7,36 +7,32 @@ favorite = true
 translationKey = "PhD"
 +++
 
-SUPER LIEN : 
+J'ai eu de la chance blabla with a [very talented physicist](https://www.lumni.fr/video/le-verre-par-thierry-giamarchi-physicien). I am very gratefull to [Pr. Thierry Giamarchi](https://en.wikipedia.org/wiki/Thierry_Giamarchi) for giving me the opportunity to work by his side on quantum materials. During my research time at the [Department of Quantum Matter](https://dqmp.unige.ch/giamarchi/) of [University of Geneva](https://www.unige.ch/en), I focused on the physics of strongly correlated quantum antiferromagnets with `meV` energy scales coupling. 
 
-I had the great opportunity to work with a [very talented physicist](https://www.lumni.fr/video/le-verre-par-thierry-giamarchi-physicien). I am very gratefull to [Pr. Thierry Giamarchi](https://en.wikipedia.org/wiki/Thierry_Giamarchi) for giving me the opportunity to work by his side on quantum materials. During my research time at the [Department of Quantum Matter](https://dqmp.unige.ch/giamarchi/) of [University of Geneva](https://www.unige.ch/en), I focused on the physics of strongly correlated quantum antiferromagnets with `meV` energy scales coupling. 
+### Résumé de ma thèse
 
-### Abstract of my PhD
+Dans cette thèse, nous nous intéressons aux effets thermiques dans des
+systèmes quantiques de spin fortement corrélés en basse dimension. Ces
+systèmes peuvent être étudiés à l’aide de matériaux dans différentes
+phases via l’application de forts champs magnétiques externes. La
+façon dont le matériau se comporte dans chaque phase peut-être décrit
+à l’aide de fonction de corrélation sur des modèles effectifs
+quantiques.
 
-We investigate thermal effects of strongly correlated low-dimensional
-spin systems. Their behavior could be studied in different phases by
-the use of large external magnetic fields on real compounds. The
-description of the materials requires focus on the correlation
-functions of the effective quantum models.
+Avec les meilleurs outils de calcul connus à ce jour pour l’étude des
+corrélations dynamiques à température finie en basse dimension, nous
+comprenons l’enjeu qu’il y a dans les propriétés magnétiques. La
+technique de prédilection utilisée dans cette thèse est la méthode
+numérique de renormalisation de la matrice densité (DMRG) qui peut
+être directement comparée à l’étude expérimentale des propriétés
+magnétiques via diffraction inélastique de neutron (INS) parachevée
+par deux différents groupes de recherche. Ces méthodes indépendantes
+(théorie et expérience) corroborent et rendent la physique
+particulièrement attrayante.
 
-
-
-We used the best numerical tools to date to study dynamical
-correlations in low-dimensional systems at finite temperature and end
-with a greater insight into magnetic materials. We used the Density
-Matrix Renormalization Group (DMRG) to study the different microscopic
-models and compared with Inelastic Neutron Scattering (INS)
-experiments on various compounds performed by different groups.  Those
-two different independent methods (experience and theory) make the
-physics so exciting.
-
-
-
-We study both numerical and analytical quasi-one-dimensional spin
-systems which offer rich physics and show deviations to expected
-analytical behavior such as the low temperature bosonization
-prediction or Tomonaga-Luttinger Liquid theory (TLL).
-
+Nous étudierons à l’aide de ces techniques les déviations en
+température de théories analytiques établies à basse dimension sous le
+nom de liquide de Luttinger (TLL).
 
 
 ## Scientific codes
