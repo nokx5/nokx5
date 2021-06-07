@@ -33,22 +33,22 @@ I'm currently fascinated by [nix :snowflake:](https://nixos.org/)  and consider 
 
 [:star: dynamic_bitset](https://github.com/nokx5/dynamic_bitset)  |  :books: ~~**doc**~~  |  *last job interview exercise*
 
-[:star: golden_cpp](https://github.com/nokx5/golden_cpp) | [:books: **doc**](https://nokx5.github.io/golden_cpp) | *template for C/C++ projects* 
+[:star: golden-cpp](https://github.com/nokx5/golden-cpp) | [:books: **doc**](https://nokx5.github.io/golden-cpp) | *template for C/C++ projects*
 
 ***
 **C++/Python projects**
 
-[:hammer: golden_binding](https://github.com/nokx5/golden_binding) | [:books: **doc**](https://nokx5.github.io/golden_binding) | *template for C++/python projects*
+[:star: golden-pybind11](https://github.com/nokx5/golden-pybind11) | [:books: **doc**](https://nokx5.github.io/golden-pybind11) | *template for C++/python projects*
 
 ***
 **Go projects**
 
-:cloud: golden_go | :books: ~~**doc**~~ | *template for go projects*
+[:star: golden-go](https://github.com/nokx5/golden-go) | :books: ~~**doc**~~ | *template for go projects*
 
 ***
 **Python projects**
 
-[:star: golden_python](https://github.com/nokx5/golden_python) | [:books: **doc**](https://nokx5.github.io/golden_python) | *template for python projects* 
+[:star: golden-python](https://github.com/nokx5/golden-python) | [:books: **doc**](https://nokx5.github.io/golden-python) | *template for python projects* | check out some [good practice](https://nokx5.github.io/golden-python/examples/index.html)
 
 [:star: speedo](https://github.com/nokx5/speedo) | :books: **doc (swagger API)** | *speedo is a web framework using `fastapi` connected to a `postgresql` database. A python client library using `pycurl` is provided with a mocker using in-memory sqlite for external dependencies.*
 
@@ -56,7 +56,7 @@ I'm currently fascinated by [nix :snowflake:](https://nixos.org/)  and consider 
 
 **Rust projects**
 
-[:car: golden_rust (template)](https://github.com/nokx5/golden_rust) | :books: ~~**doc**~~ | *template for rust projects*
+[:hammer: golden-rust (template)](https://github.com/nokx5/golden-rust) | :books: ~~**doc**~~ | *template for rust projects*
 
 [:car: moonraker](https://github.com/nokx5/moonraker) | :books: ~~**doc**~~ | *a modern web framework using rocket*
 
