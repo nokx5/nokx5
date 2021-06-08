@@ -97,10 +97,6 @@ enableEmoji = true
   languageName = "Français"
   title = "Chez Nokx"
   weight = 2
-  # [languages.fr.params]
-  #   linkedin = "https://linkedin.com/fr/whoever"
-  #   [languages.fr.params.navigation]
-  #     help = "Aide"
   [[languages.fr.menu.main]]
     identifier = "blog_fr"
     name = "journal de bord"
@@ -131,7 +127,6 @@ enableEmoji = true
 
 
 [languages.he]
-  languagedirection = "rtl"
   languageName = "עברית"
   title = "nokx ברוכים הבאים ל"
   author = "נועם קסטין"
