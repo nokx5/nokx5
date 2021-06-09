@@ -14,7 +14,7 @@ enableEmoji = true
 [params]
   author = "Noam Kestin"
   email = "info@nokx.ch"
-  avatar = "favicon.png"
+  # avatar = "favicon.png"
   description = "nokx website"
   # images = [ "images/og-featured.png" ]
   # customCSS = [ "css/my.css" ]
