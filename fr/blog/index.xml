@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Blogs on Chez Nokx</title><link>https://nokx5.github.io/nokx5/fr/blog/</link><description>Chez Nokx (Blogs)</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 01 Jun 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://nokx5.github.io/nokx5/fr/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>A short nix story for beginners</title><link>https://nokx5.github.io/nokx5/fr/blog/nix-investigation/</link><pubDate>Tue, 01 Jun 2021 00:00:00 +0000</pubDate><guid>https://nokx5.github.io/nokx5/fr/blog/nix-investigation/</guid><description>&lt;p>Nix is a great tool towards reproducible code. However the learning curve can be long. In this post, we will resume the different step we encounter and give motivation to start with nix.&lt;/p>
+&lt;h3 id="installuninstall-nix">Install/Uninstall nix&lt;/h3>
+&lt;p>In the following we will use the single user installation to avoid problems of owners and groups. Nix is simple to install (you need &lt;code>sudo&lt;/code> access to &lt;code>root&lt;/code>)&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ curl -L https://nixos.org/nix/install | sh
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>You can test that nix works with a command like&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ nix-shell -p hello --run hello
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>To uninstall, simply remove the &lt;code>/nix&lt;/code> folder and associate configuration files.&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ rm -rf /nix ~/.nix* ~/.config/nix*
+&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="develop-with-a-nix-shell">Develop with a nix-shell&lt;/h1>
+&lt;p>The easiest way to start developing with nix is to copy a working template.&lt;/p>
+&lt;p>Let&amp;rsquo;s save the following in a &lt;code>shell.nix&lt;/code> file.&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-nix" data-lang="nix">{ pkgs &lt;span style="color:#f92672">?&lt;/span> &lt;span style="color:#f92672">import&lt;/span> &lt;span style="color:#e6db74">&amp;lt;nixpkgs&amp;gt;&lt;/span> { } }: &lt;span style="color:#75715e"># 1&lt;/span>
+&lt;span style="color:#66d9ef">with&lt;/span> pkgs;
+mkShell { &lt;span style="color:#75715e"># 2&lt;/span>
+nativeBuildInputs &lt;span style="color:#f92672">=&lt;/span> [ pkgconfig ]; &lt;span style="color:#75715e"># 3&lt;/span>
+buildInputs &lt;span style="color:#f92672">=&lt;/span> [ zlib ]; &lt;span style="color:#75715e"># 4&lt;/span>
+}
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Few remarks at this point.&lt;/p>
+&lt;ol>
+&lt;li>&lt;code>pkgs = import &amp;lt;nixpkgs&amp;gt; {};&lt;/code> uses a nixpkgs &lt;a href="#more-channels">&lt;em>channel&lt;/em>&lt;/a> loaded in the &lt;code>pkgs&lt;/code> variable corresponding to all available derivations.&lt;/li>
+&lt;li>&lt;code>pkgs.mkShell {}&lt;/code> creates a shell. This is a simplified version of the generic derivation &lt;code>pkgs.mkDerivation&lt;/code>. This means that &lt;code>mkShell&lt;/code> will works for the &lt;code>nix-shell&lt;/code> command only.&lt;/li>
+&lt;li>&lt;code>nativeBuildInputs = [ emacs-nox vim ];&lt;/code> are available as native (at build-time).&lt;/li>
+&lt;li>&lt;code>buildInputs = [ boost17x ];&lt;/code> are available as program or library (at runtime).&lt;/li>
+&lt;/ol>
+&lt;p>We now can enter the development environment using nix. The first time, you will have to wait for the nix dependencies to be downloaded&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ nix-shell shell.nix --pure &lt;span style="color:#75715e"># purity means isolation from the rest of the system&lt;/span>
+&amp;gt; pkg-config --list-all
+zlib zlib - zlib compression library
+&amp;gt; exit
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>This sounds great ! But even better, try to rerun &lt;code>nix-shell&lt;/code>, all dependencies are stored in the &lt;code>/nix/store/&lt;/code> already ! 😄&lt;/p>
+&lt;h3 id="small-digression-about-the-nix-store">Small digression about the nix store&lt;/h3>
+&lt;p>The softwares are stored in &lt;code>/nix/store/&lt;/code> with prefix hashes using &lt;code>NAR&lt;/code> deterministic archiving and nix derivations &lt;code>drv&lt;/code> organization. This means that we can now have multiple version of the same software (&lt;code>gcc8&lt;/code>, &lt;code>gcc9&lt;/code>, &amp;hellip;) working without conflicting in nix. The amount of software downloaded can be quite large. Nix provide a cleaning of the nix store using garbage collection for useless legacy dependencies.&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ nix-collect-garbage -d
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>This will remove all non used derivations in the nix store.&lt;/p>
+&lt;p>Have a try and rerun the &lt;code>nix-shell&lt;/code> command.&lt;/p>
+&lt;h1 id="more-channels">More channels&lt;/h1>
+&lt;p>Now that you know how to collect garbage, let&amp;rsquo;s try to update the version of the channel &lt;code>&amp;lt;nixpkgs&amp;gt;&lt;/code>. But first what is &lt;code>&amp;lt;nixpkgs&amp;gt;&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ nix-channel --list
+nixpkgs https://nixos.org/channels/nixpkgs-unstable
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>here, &lt;code>&amp;lt;nixpkgs&amp;gt;&lt;/code> will point to the &lt;code>nixpkgs-unstable&lt;/code> branch of the official nixpkgs repository. The &lt;em>unstable&lt;/em> here means that this branch evolve fast. This means that if you update the channel a week later,&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ nix-channel --update
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>any default software could have been upgraded meanwhile, which force you to download the software again with a new &lt;code>hash&lt;/code> in the &lt;code>/nix/store/&lt;/code>.&lt;/p>
+&lt;p>In order to avoid changing the software while developing, one can pin a specific channel version and freeze the whole environment (this become always reproducible). Here is an example.&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-nix" data-lang="nix">{ pkgs &lt;span style="color:#f92672">?&lt;/span> &lt;span style="color:#f92672">import&lt;/span> (fetchTarball {
+url &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#34;https://github.com/NixOS/nixpkgs/archive/5272327b81ed355bbed5659b8d303cf2979b6953.tar.gz&amp;#34;&lt;/span>;
+sha256 &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#34;sha256:0182ys095dfx02vl2a20j1hz92dx3mfgz2a6fhn31bqlp1wa8hlq&amp;#34;&lt;/span>;
+}) { } }:
+pkgs&lt;span style="color:#f92672">.&lt;/span>mkShell { nativeBuildInputs &lt;span style="color:#f92672">=&lt;/span> [ pkgs&lt;span style="color:#f92672">.&lt;/span>nix ]; }
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Funny, we can download nix in nix. Providing a &lt;code>sha256&lt;/code> ensure that nix remain pure since it knows at that moment, that the &lt;code>NAR hash&lt;/code> of that channel could not conflict. This channel corresponds to the &lt;code>NixOS 20.03&lt;/code> release and all &lt;code>pkgs&lt;/code> there are pinned to that release. You could run this in two years, no problem for nix.&lt;/p>
+&lt;p>If you do not want to pin a specific version but you would like to jump from the unstable to the stable channel for a try, you can set the nix-channel for a specific command using the first &lt;code>shell.nix&lt;/code> example.&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ nix-shell -I nixpkgs&lt;span style="color:#f92672">=&lt;/span>https://github.com/NixOS/nixpkgs/archive/5272327b81ed355bbed5659b8d303cf2979b6953.tar.gz
+&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="this-nix-warm-up-stops-here">This nix warm-up stops here.&lt;/h1>
+&lt;p>With this tutorial, I hope I gave newcomers motivation to start with nix, there is still a long obscure path towards mastering those tools. You can start reading the &lt;a href="https://nixos.org/guides/nix-pills/">nix pills&lt;/a>, read it slowly and carefully, don&amp;rsquo;t get discouraged.&lt;/p>
+&lt;p>I would encourage you to learn after the nix pills the following in the right order.&lt;/p>
+&lt;ol>
+&lt;li>start using the nix-shell for your own development (more bash/C/C++ oriented)&lt;/li>
+&lt;li>learn nix language and use the &lt;code>nix repl&lt;/code>.&lt;/li>
+&lt;li>write your first simple package (bash/C/C++).&lt;/li>
+&lt;li>play with &lt;code>nix-shell&lt;/code>, &lt;code>nix-build&lt;/code> and channels for different languages (python/ruby/rust/go/&amp;hellip;), hack, hack, hack.&lt;/li>
+&lt;li>learn about &lt;strong>overlays&lt;/strong> to overwrite in-place (overwrite specific &lt;code>pkgs&lt;/code>).&lt;/li>
+&lt;li>the holly Grail but still an experimental feature, forget about all what you learned and use nix flakes.&lt;/li>
+&lt;/ol>
+&lt;p>Please note that if you jump one steps, you will lose multiple weeks. Enjoy your coding !&lt;/p></description></item><item><title>Bretagne</title><link>https://nokx5.github.io/nokx5/fr/blog/bretagne/</link><pubDate>Wed, 26 May 2021 00:00:00 +0000</pubDate><guid>https://nokx5.github.io/nokx5/fr/blog/bretagne/</guid><description>&lt;p>L&amp;rsquo;école des Glénans et les crêpes, c&amp;rsquo;est chouette!&lt;/p></description></item><item><title>Magnétisme quantique</title><link>https://nokx5.github.io/nokx5/fr/blog/quantum-magnetism/</link><pubDate>Thu, 02 Jan 2020 00:00:00 +0000</pubDate><guid>https://nokx5.github.io/nokx5/fr/blog/quantum-magnetism/</guid><description>&lt;p>J&amp;rsquo;ai eu de la chance blabla with a &lt;a href="https://www.lumni.fr/video/le-verre-par-thierry-giamarchi-physicien">very talented physicist&lt;/a>. I am very gratefull to &lt;a href="https://en.wikipedia.org/wiki/Thierry_Giamarchi">Pr. Thierry Giamarchi&lt;/a> for giving me the opportunity to work by his side on quantum materials. During my research time at the &lt;a href="https://dqmp.unige.ch/giamarchi/">Department of Quantum Matter&lt;/a> of &lt;a href="https://www.unige.ch/en">University of Geneva&lt;/a>, I focused on the physics of strongly correlated quantum antiferromagnets with &lt;code>meV&lt;/code> energy scales coupling.&lt;/p>
+&lt;h3 id="résumé-de-ma-thèse">Résumé de ma thèse&lt;/h3>
+&lt;p>Dans cette thèse, nous nous intéressons aux effets thermiques dans des
+systèmes quantiques de spin fortement corrélés en basse dimension. Ces
+systèmes peuvent être étudiés à l’aide de matériaux dans différentes
+phases via l’application de forts champs magnétiques externes. La
+façon dont le matériau se comporte dans chaque phase peut-être décrit
+à l’aide de fonction de corrélation sur des modèles effectifs
+quantiques.&lt;/p>
+&lt;p>Avec les meilleurs outils de calcul connus à ce jour pour l’étude des
+corrélations dynamiques à température finie en basse dimension, nous
+comprenons l’enjeu qu’il y a dans les propriétés magnétiques. La
+technique de prédilection utilisée dans cette thèse est la méthode
+numérique de renormalisation de la matrice densité (DMRG) qui peut
+être directement comparée à l’étude expérimentale des propriétés
+magnétiques via diffraction inélastique de neutron (INS) parachevée
+par deux différents groupes de recherche. Ces méthodes indépendantes
+(théorie et expérience) corroborent et rendent la physique
+particulièrement attrayante.&lt;/p>
+&lt;p>Nous étudierons à l’aide de ces techniques les déviations en
+température de théories analytiques établies à basse dimension sous le
+nom de liquide de Luttinger (TLL).&lt;/p>
+&lt;h2 id="simulations-scientifiques">Simulations scientifiques&lt;/h2>
+&lt;p>J&amp;rsquo;ai eu l&amp;rsquo;opportunité durant ma thèse de nettoyer et réinstaller un
+cluster de 700 processeur ainsi que d&amp;rsquo;y exécuter mes
+simulations. Toute cette période m&amp;rsquo;a fait prendre conscience de
+l&amp;rsquo;importance d&amp;rsquo;avoir des codes reproductibles au sein de l&amp;rsquo;académie.&lt;/p>
+&lt;hr>
+&lt;h1 id="fun-with-quantum">Fun with Quantum&lt;/h1>
+&lt;p>Here is a list of articles and books I enjoyed a lot during my time there.&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;a href="https://www.nature.com/articles/nphys1202">https://www.nature.com/articles/nphys1202&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://science.sciencemag.org/content/sci/364/6443/870.full.pdf">https://science.sciencemag.org/content/sci/364/6443/870.full.pdf&lt;/a>&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>Amazing books&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;a href="https://www.springer.com/gp/book/9780387942865">https://www.springer.com/gp/book/9780387942865&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://global.oup.com/academic/product/quantum-physics-in-one-dimension-9780198525004?cc=ch&amp;amp;lang=en&amp;amp;">https://global.oup.com/academic/product/quantum-physics-in-one-dimension-9780198525004?cc=ch&amp;amp;lang=en&amp;amp;&lt;/a>&lt;/p>
+&lt;/li>
+&lt;/ul></description></item></channel></rss>

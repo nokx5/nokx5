@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Home</title><link>https://nokx5.github.io/nokx5/</link><description>Home</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 01 Jun 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://nokx5.github.io/nokx5/index.xml" rel="self" type="application/rss+xml"/><item><title>A short nix story for beginners</title><link>https://nokx5.github.io/nokx5/blog/nix-investigation/</link><pubDate>Tue, 01 Jun 2021 00:00:00 +0000</pubDate><guid>https://nokx5.github.io/nokx5/blog/nix-investigation/</guid><description>&lt;p>Nix is a great tool towards reproducible code. However the learning curve can be long. In this post, we will resume the different step we encounter and give motivation to start with nix.&lt;/p>
+&lt;h3 id="installuninstall-nix">Install/Uninstall nix&lt;/h3>
+&lt;p>In the following we will use the single user installation to avoid problems of owners and groups. Nix is simple to install (you need &lt;code>sudo&lt;/code> access to &lt;code>root&lt;/code>)&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ curl -L https://nixos.org/nix/install | sh
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>You can test that nix works with a command like&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ nix-shell -p hello --run hello
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>To uninstall, simply remove the &lt;code>/nix&lt;/code> folder and associate configuration files.&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ rm -rf /nix ~/.nix* ~/.config/nix*
+&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="develop-with-a-nix-shell">Develop with a nix-shell&lt;/h1>
+&lt;p>The easiest way to start developing with nix is to copy a working template.&lt;/p>
+&lt;p>Let&amp;rsquo;s save the following in a &lt;code>shell.nix&lt;/code> file.&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-nix" data-lang="nix">{ pkgs &lt;span style="color:#f92672">?&lt;/span> &lt;span style="color:#f92672">import&lt;/span> &lt;span style="color:#e6db74">&amp;lt;nixpkgs&amp;gt;&lt;/span> { } }: &lt;span style="color:#75715e"># 1&lt;/span>
+&lt;span style="color:#66d9ef">with&lt;/span> pkgs;
+mkShell { &lt;span style="color:#75715e"># 2&lt;/span>
+nativeBuildInputs &lt;span style="color:#f92672">=&lt;/span> [ pkgconfig ]; &lt;span style="color:#75715e"># 3&lt;/span>
+buildInputs &lt;span style="color:#f92672">=&lt;/span> [ zlib ]; &lt;span style="color:#75715e"># 4&lt;/span>
+}
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Few remarks at this point.&lt;/p>
+&lt;ol>
+&lt;li>&lt;code>pkgs = import &amp;lt;nixpkgs&amp;gt; {};&lt;/code> uses a nixpkgs &lt;a href="#more-channels">&lt;em>channel&lt;/em>&lt;/a> loaded in the &lt;code>pkgs&lt;/code> variable corresponding to all available derivations.&lt;/li>
+&lt;li>&lt;code>pkgs.mkShell {}&lt;/code> creates a shell. This is a simplified version of the generic derivation &lt;code>pkgs.mkDerivation&lt;/code>. This means that &lt;code>mkShell&lt;/code> will works for the &lt;code>nix-shell&lt;/code> command only.&lt;/li>
+&lt;li>&lt;code>nativeBuildInputs = [ emacs-nox vim ];&lt;/code> are available as native (at build-time).&lt;/li>
+&lt;li>&lt;code>buildInputs = [ boost17x ];&lt;/code> are available as program or library (at runtime).&lt;/li>
+&lt;/ol>
+&lt;p>We now can enter the development environment using nix. The first time, you will have to wait for the nix dependencies to be downloaded&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ nix-shell shell.nix --pure &lt;span style="color:#75715e"># purity means isolation from the rest of the system&lt;/span>
+&amp;gt; pkg-config --list-all
+zlib zlib - zlib compression library
+&amp;gt; exit
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>This sounds great ! But even better, try to rerun &lt;code>nix-shell&lt;/code>, all dependencies are stored in the &lt;code>/nix/store/&lt;/code> already ! 😄&lt;/p>
+&lt;h3 id="small-digression-about-the-nix-store">Small digression about the nix store&lt;/h3>
+&lt;p>The softwares are stored in &lt;code>/nix/store/&lt;/code> with prefix hashes using &lt;code>NAR&lt;/code> deterministic archiving and nix derivations &lt;code>drv&lt;/code> organization. This means that we can now have multiple version of the same software (&lt;code>gcc8&lt;/code>, &lt;code>gcc9&lt;/code>, &amp;hellip;) working without conflicting in nix. The amount of software downloaded can be quite large. Nix provide a cleaning of the nix store using garbage collection for useless legacy dependencies.&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ nix-collect-garbage -d
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>This will remove all non used derivations in the nix store.&lt;/p>
+&lt;p>Have a try and rerun the &lt;code>nix-shell&lt;/code> command.&lt;/p>
+&lt;h1 id="more-channels">More channels&lt;/h1>
+&lt;p>Now that you know how to collect garbage, let&amp;rsquo;s try to update the version of the channel &lt;code>&amp;lt;nixpkgs&amp;gt;&lt;/code>. But first what is &lt;code>&amp;lt;nixpkgs&amp;gt;&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ nix-channel --list
+nixpkgs https://nixos.org/channels/nixpkgs-unstable
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>here, &lt;code>&amp;lt;nixpkgs&amp;gt;&lt;/code> will point to the &lt;code>nixpkgs-unstable&lt;/code> branch of the official nixpkgs repository. The &lt;em>unstable&lt;/em> here means that this branch evolve fast. This means that if you update the channel a week later,&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ nix-channel --update
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>any default software could have been upgraded meanwhile, which force you to download the software again with a new &lt;code>hash&lt;/code> in the &lt;code>/nix/store/&lt;/code>.&lt;/p>
+&lt;p>In order to avoid changing the software while developing, one can pin a specific channel version and freeze the whole environment (this become always reproducible). Here is an example.&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-nix" data-lang="nix">{ pkgs &lt;span style="color:#f92672">?&lt;/span> &lt;span style="color:#f92672">import&lt;/span> (fetchTarball {
+url &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#34;https://github.com/NixOS/nixpkgs/archive/5272327b81ed355bbed5659b8d303cf2979b6953.tar.gz&amp;#34;&lt;/span>;
+sha256 &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#34;sha256:0182ys095dfx02vl2a20j1hz92dx3mfgz2a6fhn31bqlp1wa8hlq&amp;#34;&lt;/span>;
+}) { } }:
+pkgs&lt;span style="color:#f92672">.&lt;/span>mkShell { nativeBuildInputs &lt;span style="color:#f92672">=&lt;/span> [ pkgs&lt;span style="color:#f92672">.&lt;/span>nix ]; }
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Funny, we can download nix in nix. Providing a &lt;code>sha256&lt;/code> ensure that nix remain pure since it knows at that moment, that the &lt;code>NAR hash&lt;/code> of that channel could not conflict. This channel corresponds to the &lt;code>NixOS 20.03&lt;/code> release and all &lt;code>pkgs&lt;/code> there are pinned to that release. You could run this in two years, no problem for nix.&lt;/p>
+&lt;p>If you do not want to pin a specific version but you would like to jump from the unstable to the stable channel for a try, you can set the nix-channel for a specific command using the first &lt;code>shell.nix&lt;/code> example.&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ nix-shell -I nixpkgs&lt;span style="color:#f92672">=&lt;/span>https://github.com/NixOS/nixpkgs/archive/5272327b81ed355bbed5659b8d303cf2979b6953.tar.gz
+&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="this-nix-warm-up-stops-here">This nix warm-up stops here.&lt;/h1>
+&lt;p>With this tutorial, I hope I gave newcomers motivation to start with nix, there is still a long obscure path towards mastering those tools. You can start reading the &lt;a href="https://nixos.org/guides/nix-pills/">nix pills&lt;/a>, read it slowly and carefully, don&amp;rsquo;t get discouraged.&lt;/p>
+&lt;p>I would encourage you to learn after the nix pills the following in the right order.&lt;/p>
+&lt;ol>
+&lt;li>start using the nix-shell for your own development (more bash/C/C++ oriented)&lt;/li>
+&lt;li>learn nix language and use the &lt;code>nix repl&lt;/code>.&lt;/li>
+&lt;li>write your first simple package (bash/C/C++).&lt;/li>
+&lt;li>play with &lt;code>nix-shell&lt;/code>, &lt;code>nix-build&lt;/code> and channels for different languages (python/ruby/rust/go/&amp;hellip;), hack, hack, hack.&lt;/li>
+&lt;li>learn about &lt;strong>overlays&lt;/strong> to overwrite in-place (overwrite specific &lt;code>pkgs&lt;/code>).&lt;/li>
+&lt;li>the holly Grail but still an experimental feature, forget about all what you learned and use nix flakes.&lt;/li>
+&lt;/ol>
+&lt;p>Please note that if you jump one steps, you will lose multiple weeks. Enjoy your coding !&lt;/p></description></item><item><title/><link>https://nokx5.github.io/nokx5/software/</link><pubDate>Sat, 22 May 2021 11:34:23 +0200</pubDate><guid>https://nokx5.github.io/nokx5/software/</guid><description>&lt;p>I like to program because I like to organize data, in particular when it comes to details. My philosophy is &amp;ldquo;make it works, then optimize&amp;rdquo;. I like working with computers because of the rules they provide (like in a game). Algorithms and design patterns are beautiful, so don&amp;rsquo;t mess them. I like working in team on complex pipelines.&lt;/p>
+&lt;hr>
+&lt;p>I use on-going projects symbols below : ☁️=considered, 🚗=started, 🔨=​WIP, ⭐=stabilized&lt;/p>
+&lt;hr>
+&lt;p>The important things with coding is to have some on-going projects. However it is generally difficult to code on very different projects at the same time. 😺&lt;/p>
+&lt;p>I&amp;rsquo;m currently fascinated by &lt;a href="https://nixos.org/">nix ❄️&lt;/a> and consider it as a possible solution for code reproducibility in science. I like creating Docker or App images directly from nix, this concept of one language to rule them all sounds very promising. I&amp;rsquo;m now concerned about moving to cloud services such as AWS or Azure and becoming a CloudOps.&lt;/p>
+&lt;h3 id="list-of-nokx-software">List of nokx software&lt;/h3>
+&lt;hr>
+&lt;p>&lt;strong>Uncategorized&lt;/strong>&lt;/p>
+&lt;p>☁️ Fast Application Of Quantum Gates | 📚 &lt;del>&lt;strong>doc&lt;/strong>&lt;/del> | &lt;em>I would like to optimize few routines in very hard tasks. The Hilbert space grows exponentially fast.&lt;/em>&lt;/p>
+&lt;hr>
+&lt;p>&lt;strong>C/C++ projects&lt;/strong>&lt;/p>
+&lt;p>&lt;a href="https://github.com/nokx5/dynamic_bitset">⭐ dynamic_bitset&lt;/a> | 📚 &lt;del>&lt;strong>doc&lt;/strong>&lt;/del> | &lt;em>last job interview exercise&lt;/em>&lt;/p>
+&lt;p>&lt;a href="https://github.com/nokx5/golden-cpp">⭐ golden-cpp&lt;/a> | &lt;a href="https://nokx5.github.io/golden-cpp">📚 &lt;strong>doc&lt;/strong>&lt;/a> | &lt;em>template for C/C++ projects&lt;/em>&lt;/p>
+&lt;hr>
+&lt;p>&lt;strong>C++/Python projects&lt;/strong>&lt;/p>
+&lt;p>&lt;a href="https://github.com/nokx5/golden-pybind11">⭐ golden-pybind11&lt;/a> | &lt;a href="https://nokx5.github.io/golden-pybind11">📚 &lt;strong>doc&lt;/strong>&lt;/a> | &lt;em>template for C++/python projects&lt;/em>&lt;/p>
+&lt;hr>
+&lt;p>&lt;strong>Go projects&lt;/strong>&lt;/p>
+&lt;p>&lt;a href="https://github.com/nokx5/golden-go">⭐ golden-go&lt;/a> | 📚 &lt;del>&lt;strong>doc&lt;/strong>&lt;/del> | &lt;em>template for go projects&lt;/em>&lt;/p>
+&lt;hr>
+&lt;p>&lt;strong>Python projects&lt;/strong>&lt;/p>
+&lt;p>&lt;a href="https://github.com/nokx5/golden-python">⭐ golden-python&lt;/a> | &lt;a href="https://nokx5.github.io/golden-python">📚 &lt;strong>doc&lt;/strong>&lt;/a> | &lt;em>template for python projects&lt;/em> | check out some &lt;a href="https://nokx5.github.io/golden-python/examples/index.html">good practice&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://github.com/nokx5/speedo">⭐ speedo&lt;/a> | 📚 &lt;strong>doc (swagger API)&lt;/strong> | &lt;em>speedo is a web framework using &lt;code>fastapi&lt;/code> connected to a &lt;code>postgresql&lt;/code> database. A python client library using &lt;code>pycurl&lt;/code> is provided with a mocker using in-memory sqlite for external dependencies.&lt;/em>&lt;/p>
+&lt;hr>
+&lt;p>&lt;strong>Rust projects&lt;/strong>&lt;/p>
+&lt;p>&lt;a href="https://github.com/nokx5/golden-rust">🔨 golden-rust (template)&lt;/a> | 📚 &lt;del>&lt;strong>doc&lt;/strong>&lt;/del> | &lt;em>template for rust projects&lt;/em>&lt;/p>
+&lt;p>&lt;a href="https://github.com/nokx5/moonraker">🚗 moonraker&lt;/a> | 📚 &lt;del>&lt;strong>doc&lt;/strong>&lt;/del> | &lt;em>a modern web framework using rocket&lt;/em>&lt;/p>
+&lt;hr>
+&lt;p>&lt;strong>Scripts &amp;amp; Automation&lt;/strong>&lt;/p>
+&lt;p>&lt;a href="https://github.com/nokx5/barthelemy">🚗 barthelemy&lt;/a> | 📚 &lt;del>&lt;strong>doc&lt;/strong>&lt;/del> | &lt;em>a repository for cli and scripts - similar to tldr but personal&lt;/em>&lt;/p>
+&lt;hr></description></item><item><title/><link>https://nokx5.github.io/nokx5/music/</link><pubDate>Fri, 01 May 2020 00:00:00 +0000</pubDate><guid>https://nokx5.github.io/nokx5/music/</guid><description>&lt;p>I started as a young boy playing percussions, then focused on jazz drums 🥁 and later on vibraphone 🎹 as well. I was very lucky to work with a very talented drummer and percussionist at the &lt;a href="https://conservatoirepopulaire.ch/">popular music conservatory&lt;/a>. I will list here some methods we used during my progression with him.&lt;/p>
+&lt;h1 id="drums">Drums&lt;/h1>
+&lt;ul>
+&lt;li>Stick Control for the Snare Drummer &lt;em>By George Lawrence Stone&lt;/em>&lt;/li>
+&lt;li>Advanced Snare Drum Studies &lt;em>By Mitchell Peters&lt;/em>&lt;/li>
+&lt;li>Syncopation &lt;em>By Ted Reed&lt;/em>&lt;/li>
+&lt;li>The Drummer&amp;rsquo;s Complete Vocabulary &lt;em>as taught by&lt;/em> Alan Dawson &lt;em>By John Ramsay&lt;/em>&lt;/li>
+&lt;li>Beyond Bop Drumming &lt;em>By John Riley&lt;/em>&lt;/li>
+&lt;li>The New Breed &lt;em>By Gary Chester&lt;/em>&lt;/li>
+&lt;li>Even In The Odds &lt;em>By Ralph Humphrey&lt;/em>&lt;/li>
+&lt;li>6 Solos for Drum Set &lt;em>By Eckhard Kopetzki&lt;/em>&lt;/li>
+&lt;/ul>
+&lt;h1 id="vibraphone">Vibraphone&lt;/h1>
+&lt;ul>
+&lt;li>15 intermediate Jazz Duets &lt;em>By John La Porta&lt;/em>&lt;/li>
+&lt;li>The Jazz Vibraphone Book &lt;em>By Dick Sisto&lt;/em>&lt;/li>
+&lt;li>Music Of The Day &lt;em>By Bill Molenhof&lt;/em>&lt;/li>
+&lt;li>Mirror from Another &lt;em>By David Friedman&lt;/em>&lt;/li>
+&lt;/ul>
+&lt;h1 id="band">Band&lt;/h1>
+&lt;p>The practice of live music and development of the hear couldn&amp;rsquo;t have been possible without other musician. I am particularly grateful to two teachers of the &lt;em>Atelier Junior&lt;/em> at &lt;a href="https://www.amr-geneve.ch/">AMR&lt;/a> for letting me practice two different instruments with other young motivated musician. During the covid crisis, I missed the jam sessions and the live instruments a lot.&lt;/p>
+&lt;p>Finally, I met Dehlia, my partner, in this jazz environment. I replaced someone on the drums for a live concert and she was playing the double bass. ❤️&lt;/p>
+&lt;p>Jazz is broad and alive!&lt;/p></description></item><item><title>Quantum Magnetism</title><link>https://nokx5.github.io/nokx5/blog/quantum-magnetism/</link><pubDate>Wed, 01 Jan 2020 00:00:00 +0000</pubDate><guid>https://nokx5.github.io/nokx5/blog/quantum-magnetism/</guid><description>&lt;p>I had the great opportunity to work with a &lt;a href="https://www.lumni.fr/video/le-verre-par-thierry-giamarchi-physicien">very talented physicist&lt;/a>. I am very grateful to &lt;a href="https://en.wikipedia.org/wiki/Thierry_Giamarchi">Pr. Thierry Giamarchi&lt;/a> for giving me the opportunity to work by his side on quantum materials. During my research time at the &lt;a href="https://dqmp.unige.ch/giamarchi/">Department of Quantum Matter&lt;/a> of &lt;a href="https://www.unige.ch/en">University of Geneva&lt;/a>, I focused on the physics of strongly correlated quantum antiferromagnets with a strong focus on experiments.&lt;/p>
+&lt;h3 id="abstract-of-my-phd">Abstract of my PhD&lt;/h3>
+&lt;p>We investigate thermal effects of strongly correlated low-dimensional
+spin systems. Their behavior could be studied in different phases by
+the use of large external magnetic fields on real compounds. The
+description of the materials requires focus on the correlation
+functions of the effective quantum models.&lt;/p>
+&lt;p>We used the best numerical tools to date to study dynamical
+correlations in low-dimensional systems at finite temperature and end
+with a greater insight into magnetic materials. We used the Density
+Matrix Renormalization Group (DMRG) to study the different microscopic
+models and compared with Inelastic Neutron Scattering (INS)
+experiments on various compounds performed by different groups. Those
+two different independent methods (experience and theory) make the
+physics so exciting.&lt;/p>
+&lt;p>We study both numerical and analytical quasi-one-dimensional spin
+systems which offer rich physics and show deviations to expected
+analytical behavior such as the low temperature bosonization
+prediction or Tomonaga-Luttinger Liquid theory (TLL).&lt;/p>
+&lt;h2 id="scientific-codes">Scientific codes&lt;/h2>
+&lt;p>During my PhD time, I had the opportunity to clean and reinstall the
+research group&amp;rsquo;s cluster and to run intensive scientific simulations
+on it. I felt very much concerned about reproducibility of codes in
+science and I would still enjoy to work in that area (scientific
+coding and reproducibility).&lt;/p>
+&lt;hr>
+&lt;h1 id="fun-with-quantum">Fun with Quantum&lt;/h1>
+&lt;p>In this last section, I would like to have fun with quantum. Here is a
+list of articles and books I enjoyed a lot during my research time.&lt;/p>
+&lt;p>Great articles :&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://www.nature.com/articles/nphys1202">Quantum Darwinism and the theory of Einselection&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.nature.com/articles/nphys2259">Cold Atomic Gases for quantum simulations&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://science.sciencemag.org/content/364/6443/870.full">Carbon nanotubes probing Many-Body theory in one-dimension&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.nature.com/articles/s41586-018-0450-2">Synthetic models with Rydberg atoms&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>Great books :&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;a href="https://www.springer.com/gp/book/9780387942865">Interacting Electrons and Quantum Magnetism - Assa Auerbach&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://global.oup.com/academic/product/quantum-physics-in-one-dimension-9780198525004?cc=ch&amp;amp;lang=en&amp;amp;">Quantum Physics in One Dimension - Thierry Giamarchi&lt;/a>&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>Great or funny websites :&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="http://toutestquantique.fr/en/">Quantum Made Simple&lt;/a>&lt;/li>
+&lt;li>&lt;a href="http://britneyspears.ac/lasers.htm">Britney Spears' Guide to Semiconductor Physics&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://maxthedemon.com/">Max the Demon vs Entropy Of Doom&lt;/a>&lt;/li>
+&lt;/ul></description></item><item><title/><link>https://nokx5.github.io/nokx5/contact/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://nokx5.github.io/nokx5/contact/</guid><description>&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>&lt;strong>Contact me&lt;/strong>&lt;/th>
+&lt;th>&lt;strong>Noam Kestin&lt;/strong>&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;img src="me.png" alt="About me" />&lt;/td>
+&lt;td>👻 nokx&lt;br />&lt;br />🏠 &lt;a href="https://portfolio.nokx.ch">portfolio.nokx.ch&lt;/a>&lt;br />&lt;br />✉️ &lt;a href="mailto:info@nokx.ch">info@nokx.ch&lt;/a>&lt;br />&lt;br />🔍 &lt;a href="https://github.com/nokx5">github&lt;/a>&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table></description></item></channel></rss>

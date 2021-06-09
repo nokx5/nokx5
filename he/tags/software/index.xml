@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>software on nokx ברוכים הבאים ל</title><link>https://nokx5.github.io/nokx5/he/tags/software/</link><description>nokx ברוכים הבאים ל (software)</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 22 May 2021 11:34:23 +0200</lastBuildDate><atom:link href="https://nokx5.github.io/nokx5/he/tags/software/index.xml" rel="self" type="application/rss+xml"/><item><title/><link>https://nokx5.github.io/nokx5/he/software/</link><pubDate>Sat, 22 May 2021 11:34:23 +0200</pubDate><guid>https://nokx5.github.io/nokx5/he/software/</guid><description>&lt;p>I like to program because I like to organize data, in particular when it comes to details. My philosophy is &amp;ldquo;make it works, then optimize&amp;rdquo;. I like working with computers because of the rules they provide (like in a game). Algorithms and design patterns are beautiful, so don&amp;rsquo;t mess them. I like working in team on complex pipelines.&lt;/p>
+&lt;hr>
+&lt;p>I use on-going projects symbols below : ☁️=considered, 🚗=started, 🔨=​WIP, ⭐=stabilized&lt;/p>
+&lt;hr>
+&lt;p>The important things with coding is to have some on-going projects. However it is generally difficult to code on very different projects at the same time. 😺&lt;/p>
+&lt;p>I&amp;rsquo;m currently fascinated by &lt;a href="https://nixos.org/">nix ❄️&lt;/a> and consider it as a possible solution for code reproducibility in science. I like creating Docker or App images directly from nix, this concept of one language to rule them all sounds very promising. I&amp;rsquo;m now concerned about moving to cloud services such as AWS or Azure and becoming a CloudOps.&lt;/p>
+&lt;h3 id="list-of-nokx-software">List of nokx software&lt;/h3>
+&lt;hr>
+&lt;p>&lt;strong>Uncategorized&lt;/strong>&lt;/p>
+&lt;p>☁️ Fast Application Of Quantum Gates | 📚 &lt;del>&lt;strong>doc&lt;/strong>&lt;/del> | &lt;em>I would like to optimize few routines in very hard tasks. The Hilbert space grows exponentially fast.&lt;/em>&lt;/p>
+&lt;hr>
+&lt;p>&lt;strong>C/C++ projects&lt;/strong>&lt;/p>
+&lt;p>&lt;a href="https://github.com/nokx5/dynamic_bitset">⭐ dynamic_bitset&lt;/a> | 📚 &lt;del>&lt;strong>doc&lt;/strong>&lt;/del> | &lt;em>last job interview exercise&lt;/em>&lt;/p>
+&lt;p>&lt;a href="https://github.com/nokx5/golden-cpp">⭐ golden-cpp&lt;/a> | &lt;a href="https://nokx5.github.io/golden-cpp">📚 &lt;strong>doc&lt;/strong>&lt;/a> | &lt;em>template for C/C++ projects&lt;/em>&lt;/p>
+&lt;hr>
+&lt;p>&lt;strong>C++/Python projects&lt;/strong>&lt;/p>
+&lt;p>&lt;a href="https://github.com/nokx5/golden-pybind11">⭐ golden-pybind11&lt;/a> | &lt;a href="https://nokx5.github.io/golden-pybind11">📚 &lt;strong>doc&lt;/strong>&lt;/a> | &lt;em>template for C++/python projects&lt;/em>&lt;/p>
+&lt;hr>
+&lt;p>&lt;strong>Go projects&lt;/strong>&lt;/p>
+&lt;p>&lt;a href="https://github.com/nokx5/golden-go">⭐ golden-go&lt;/a> | 📚 &lt;del>&lt;strong>doc&lt;/strong>&lt;/del> | &lt;em>template for go projects&lt;/em>&lt;/p>
+&lt;hr>
+&lt;p>&lt;strong>Python projects&lt;/strong>&lt;/p>
+&lt;p>&lt;a href="https://github.com/nokx5/golden-python">⭐ golden-python&lt;/a> | &lt;a href="https://nokx5.github.io/golden-python">📚 &lt;strong>doc&lt;/strong>&lt;/a> | &lt;em>template for python projects&lt;/em> | check out some &lt;a href="https://nokx5.github.io/golden-python/examples/index.html">good practice&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://github.com/nokx5/speedo">⭐ speedo&lt;/a> | 📚 &lt;strong>doc (swagger API)&lt;/strong> | &lt;em>speedo is a web framework using &lt;code>fastapi&lt;/code> connected to a &lt;code>postgresql&lt;/code> database. A python client library using &lt;code>pycurl&lt;/code> is provided with a mocker using in-memory sqlite for external dependencies.&lt;/em>&lt;/p>
+&lt;hr>
+&lt;p>&lt;strong>Rust projects&lt;/strong>&lt;/p>
+&lt;p>&lt;a href="https://github.com/nokx5/golden-rust">🔨 golden-rust (template)&lt;/a> | 📚 &lt;del>&lt;strong>doc&lt;/strong>&lt;/del> | &lt;em>template for rust projects&lt;/em>&lt;/p>
+&lt;p>&lt;a href="https://github.com/nokx5/moonraker">🚗 moonraker&lt;/a> | 📚 &lt;del>&lt;strong>doc&lt;/strong>&lt;/del> | &lt;em>a modern web framework using rocket&lt;/em>&lt;/p>
+&lt;hr>
+&lt;p>&lt;strong>Scripts &amp;amp; Automation&lt;/strong>&lt;/p>
+&lt;p>&lt;a href="https://github.com/nokx5/barthelemy">🚗 barthelemy&lt;/a> | 📚 &lt;del>&lt;strong>doc&lt;/strong>&lt;/del> | &lt;em>a repository for cli and scripts - similar to tldr but personal&lt;/em>&lt;/p>
+&lt;hr></description></item></channel></rss>

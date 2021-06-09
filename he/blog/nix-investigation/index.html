@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+
+
+    
+
+<html lang="en-us" data-theme="dark">
+<head>
+    
+        
+<meta charset="utf-8">
+<meta name="HandheldFriendly" content="True">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer-when-downgrade">
+
+<title>A short nix story for beginners - nokx ברוכים הבאים ל</title>
+<meta name="description" content="nokx website">
+
+<link rel="icon" type="image/x-icon" href="https://nokx5.github.io/nokx5/favicon.ico">
+<link rel="apple-touch-icon-precomposed" href="https://nokx5.github.io/nokx5/favicon.png">
+
+
+
+    
+
+
+
+
+
+    
+    
+        
+    
+    
+
+    
+        <link rel="stylesheet" href="https://nokx5.github.io/nokx5/css/style.min.e7523dbdbf721e51c0b8495c3309d14918ad2a239a810cbfe5b4c4f00c582480.css" integrity="sha256-51I9vb9yHlHAuElcMwnRSRitKiOagQy/5bTE8AxYJIA=">
+    
+
+
+
+
+
+<meta property="og:title" content="A short nix story for beginners" />
+<meta property="og:description" content="nix for beginners" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://nokx5.github.io/nokx5/he/blog/nix-investigation/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2021-06-01T00:00:00&#43;00:00" />
+<meta property="article:modified_time" content="2021-06-01T00:00:00&#43;00:00" /><meta property="og:site_name" content="nokx ברוכים הבאים ל" />
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="A short nix story for beginners"/>
+<meta name="twitter:description" content="nix for beginners"/>
+
+
+
+    <link rel="webmention" href="https://webmention.io/hugo-theme-anubis/webmention" />
+    
+
+
+    <link rel="webmention" href="https://nokx.ch" />
+
+
+
+
+
+
+
+
+
+    
+</head>
+<body>
+    <a class="skip-main" href="#main">Skip to main content</a>
+    <div class="container">
+        <header class="common-header"> 
+            
+                <div class="header-top">
+    <h1 class="site-title">
+        <a href="/nokx5/he">nokx ברוכים הבאים ל</a>
+    </h1>
+    <ul class="social-icons">
+
+
+    
+        
+        <li>
+            <a href="mailto:info@nokx.ch" title="Email" rel="me">
+            <span class="inline-svg" >
+    
+
+
+
+    
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.3 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path fill="currentColor" d="M464 64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V112c0-26.51-21.49-48-48-48zm0 48v40.805c-22.422 18.259-58.168 46.651-134.587 106.49-16.841 13.247-50.201 45.072-73.413 44.701-23.208.375-56.579-31.459-73.413-44.701C106.18 199.465 70.425 171.067 48 152.805V112h416zM48 400V214.398c22.914 18.251 55.409 43.862 104.938 82.646 21.857 17.205 60.134 55.186 103.062 54.955 42.717.231 80.509-37.199 103.053-54.947 49.528-38.783 82.032-64.401 104.947-82.653V400H48z"/></svg>
+
+</span>
+
+            </a>
+        </li>
+    
+
+    
+        
+        <li>
+            <a href="https://www.linkedin.com/in/noam-kestin-05nk" title="Linkedin" rel="me">
+            <span class="inline-svg" >
+    
+
+
+
+    
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.3 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path fill="currentColor" d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+
+</span>
+
+            </a>
+        </li>
+    
+
+    
+        
+        <li>
+            <a href="https://github.com/nokx5" title="Github" rel="me">
+            <span class="inline-svg" >
+    
+
+
+
+    
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!-- Font Awesome Free 5.15.3 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+
+</span>
+
+            </a>
+        </li>
+    
+
+</ul>
+
+</div>
+
+    <nav>
+        
+        
+        <a class="" href="https://nokx5.github.io/nokx5/he/contact/" title="קשר">קשר</a>
+        
+        <a class="" href="https://nokx5.github.io/nokx5/he/music/" title="ג&#39;ז">ג&#39;ז</a>
+        
+        <a class="" href="https://nokx5.github.io/nokx5/he/software/" title="תוכנות">תוכנות</a>
+        
+        <a class="" href="https://nokx5.github.io/nokx5/he/blog/" title="בלוג">בלוג</a>
+        
+    </nav>
+
+
+
+
+            
+        </header>
+        <main id="main" tabindex="-1"> 
+            
+    
+    
+    <article class="post h-entry">
+        <header class="post-header">
+            <h1 class="p-name post-title favorite">A short nix story for beginners</h1>
+        </header>
+        <div class="content e-content">
+            <p>Nix is a great tool towards reproducible code. However the learning curve can be long. In this post, we will resume the different step we encounter and give motivation to start with nix.</p>
+<h3 id="installuninstall-nix">Install/Uninstall nix</h3>
+<p>In the following we will use the single user installation to avoid problems of owners and groups. Nix is simple to install (you need <code>sudo</code> access to <code>root</code>)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ curl -L https://nixos.org/nix/install | sh
+</code></pre></div><p>You can test that nix works with a command like</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ nix-shell -p hello --run hello
+</code></pre></div><p>To uninstall, simply remove the <code>/nix</code> folder and associate configuration files.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ rm -rf /nix ~/.nix* ~/.config/nix*
+</code></pre></div><h1 id="develop-with-a-nix-shell">Develop with a nix-shell</h1>
+<p>The easiest way to start developing with nix is to copy a working template.</p>
+<p>Let&rsquo;s save the following in a <code>shell.nix</code> file.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-nix" data-lang="nix">{ pkgs <span style="color:#f92672">?</span> <span style="color:#f92672">import</span> <span style="color:#e6db74">&lt;nixpkgs&gt;</span> { } }: <span style="color:#75715e"># 1</span>
+
+<span style="color:#66d9ef">with</span> pkgs;
+
+mkShell { <span style="color:#75715e"># 2</span>
+  nativeBuildInputs <span style="color:#f92672">=</span> [ pkgconfig ]; <span style="color:#75715e"># 3</span>
+  buildInputs <span style="color:#f92672">=</span> [ zlib ]; <span style="color:#75715e"># 4</span>
+}
+</code></pre></div><p>Few remarks at this point.</p>
+<ol>
+<li><code>pkgs = import &lt;nixpkgs&gt; {};</code> uses a nixpkgs <a href="#more-channels"><em>channel</em></a> loaded in the <code>pkgs</code> variable corresponding to all available derivations.</li>
+<li><code>pkgs.mkShell {}</code> creates a shell. This is a simplified version of the generic derivation <code>pkgs.mkDerivation</code>. This means that <code>mkShell</code> will works for the <code>nix-shell</code> command only.</li>
+<li><code>nativeBuildInputs = [ emacs-nox vim ];</code> are available as native (at build-time).</li>
+<li><code>buildInputs = [ boost17x ];</code> are available as program or library (at runtime).</li>
+</ol>
+<p>We now can enter the development environment using nix. The first time, you will have to wait for the nix dependencies to be downloaded</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ nix-shell shell.nix --pure <span style="color:#75715e"># purity means isolation from the rest of the system</span>
+&gt; pkg-config --list-all
+zlib zlib - zlib compression library
+&gt; exit
+</code></pre></div><p>This sounds great ! But even better, try to rerun <code>nix-shell</code>, all dependencies are stored in the <code>/nix/store/</code>  already ! 😄</p>
+<h3 id="small-digression-about-the-nix-store">Small digression about the nix store</h3>
+<p>The softwares are stored in <code>/nix/store/</code> with prefix hashes using <code>NAR</code> deterministic archiving and nix derivations <code>drv</code> organization. This means that we can now have multiple version of the same software (<code>gcc8</code>, <code>gcc9</code>, &hellip;) working without conflicting in nix. The amount of software downloaded can be quite large. Nix provide a cleaning of the nix store using garbage collection for useless legacy dependencies.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ nix-collect-garbage -d
+</code></pre></div><p>This will remove all non used derivations in the nix store.</p>
+<p>Have a try and rerun the <code>nix-shell</code> command.</p>
+<h1 id="more-channels">More channels</h1>
+<p>Now that you know how to collect garbage, let&rsquo;s try to update the version of the channel <code>&lt;nixpkgs&gt;</code>. But first what is <code>&lt;nixpkgs&gt;</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ nix-channel --list
+nixpkgs https://nixos.org/channels/nixpkgs-unstable
+</code></pre></div><p>here, <code>&lt;nixpkgs&gt;</code> will point to the <code>nixpkgs-unstable</code> branch of the official nixpkgs repository. The <em>unstable</em> here means that this branch evolve fast. This means that if you update the channel a week later,</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ nix-channel --update
+</code></pre></div><p>any default software could have been upgraded meanwhile, which force you to download the software again with a new <code>hash</code> in the <code>/nix/store/</code>.</p>
+<p>In order to avoid changing the software while developing, one can pin a specific channel version and freeze the whole environment (this become always reproducible). Here is an example.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-nix" data-lang="nix">{ pkgs <span style="color:#f92672">?</span> <span style="color:#f92672">import</span> (fetchTarball {
+  url <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;https://github.com/NixOS/nixpkgs/archive/5272327b81ed355bbed5659b8d303cf2979b6953.tar.gz&#34;</span>;
+  sha256 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;sha256:0182ys095dfx02vl2a20j1hz92dx3mfgz2a6fhn31bqlp1wa8hlq&#34;</span>;
+}) { } }:
+
+pkgs<span style="color:#f92672">.</span>mkShell { nativeBuildInputs <span style="color:#f92672">=</span> [ pkgs<span style="color:#f92672">.</span>nix ]; }
+</code></pre></div><p>Funny, we can download nix in nix. Providing a <code>sha256</code> ensure that nix remain pure since it knows at that moment, that the <code>NAR hash</code> of that channel could not conflict. This channel corresponds to the <code>NixOS 20.03</code> release and all <code>pkgs</code> there are pinned to that release. You could run this in two years, no problem for nix.</p>
+<p>If you do not want to pin a specific version but you would like to jump from the unstable to the stable channel for a try, you can set the nix-channel for a specific command using the first <code>shell.nix</code> example.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ nix-shell -I nixpkgs<span style="color:#f92672">=</span>https://github.com/NixOS/nixpkgs/archive/5272327b81ed355bbed5659b8d303cf2979b6953.tar.gz
+</code></pre></div><h1 id="this-nix-warm-up-stops-here">This nix warm-up stops here.</h1>
+<p>With this tutorial, I hope I gave newcomers motivation to start with nix, there is still a long obscure path towards mastering those tools. You can start reading the <a href="https://nixos.org/guides/nix-pills/">nix pills</a>, read it slowly and carefully, don&rsquo;t get discouraged.</p>
+<p>I would encourage you to learn after the nix pills the following in the right order.</p>
+<ol>
+<li>start using the nix-shell for your own development (more bash/C/C++ oriented)</li>
+<li>learn nix language and use the <code>nix repl</code>.</li>
+<li>write your first simple package (bash/C/C++).</li>
+<li>play with <code>nix-shell</code>, <code>nix-build</code> and channels for different languages (python/ruby/rust/go/&hellip;), hack, hack, hack.</li>
+<li>learn about <strong>overlays</strong> to overwrite in-place (overwrite specific <code>pkgs</code>).</li>
+<li>the holly Grail but still an experimental feature, forget about all what you learned and use nix flakes.</li>
+</ol>
+<p>Please note that if you jump one steps, you will lose multiple weeks. Enjoy your coding !</p>
+
+        </div>
+        
+
+    
+
+
+<div class="post-info">
+    
+        <div class="post-date dt-published">2021-06-01</div>
+    
+    
+    <a class="post-hidden-url u-url" href="https://nokx5.github.io/nokx5/he/blog/nix-investigation/">https://nokx5.github.io/nokx5/he/blog/nix-investigation/</a>
+    <a href=https://nokx5.github.io/nokx5/ class="p-name p-author post-hidden-author h-card" rel="me">nokx</a>
+
+
+    <div class="post-taxonomies">
+        
+            
+                <ul class="post-tags">
+                    
+                        <li><a href="https://nokx5.github.io/nokx5/he/tags/nix">#nix</a></li>
+                    
+                </ul>
+        
+    </div>
+</div>
+
+    </article>
+
+    
+        
+
+
+
+
+
+    
+
+    
+
+    
+
+
+        </main>
+        
+            <footer class="common-footer">
+    
+    
+        <ul class="language-select">
+
+<li><a href="https://nokx5.github.io/nokx5/">English</a></li>
+
+<li><a href="https://nokx5.github.io/nokx5/fr/">Français</a></li>
+
+<li><a href="https://nokx5.github.io/nokx5/he/">עברית</a></li>
+
+<li><a href="https://nokx5.github.io/nokx5/de/">Deutsch</a></li>
+
+</ul>
+    
+
+    <div class="common-footer-bottom">
+        
+        <div class="copyright">
+            <p>© נועם קסטין, 2021<br>
+            Powered by <a target="_blank" rel="noopener noreferrer" href="https://gohugo.io/">Hugo</a>, theme <a target="_blank" rel="noopener noreferrer" href="https://github.com/mitrichius/hugo-theme-anubis">Anubis</a>.<br>
+            
+            </p>  
+        </div> 
+
+        
+
+    
+
+
+   
+    </div>
+
+    <p class="h-card vcard">
+
+    <a href=https://nokx5.github.io/nokx5/ class="p-name u-url url fn" rel="me">נועם קסטין</a> 
+
+     
+        /
+        <a class="p-email u-email email" rel="me" href="mailto:info@nokx.ch">info@nokx.ch</a>
+    
+
+    
+</p> 
+</footer>
+
+        
+    </div>
+</body>
+</html>
