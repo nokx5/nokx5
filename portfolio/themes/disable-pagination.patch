@@ -1,0 +1,30 @@
+From a88e7c3d9f5df3360ad6c549b10a9dfaf8f88436 Mon Sep 17 00:00:00 2001
+From: nokx <72279573+nokx5@users.noreply.github.com>
+Date: Wed, 9 Jun 2021 10:39:19 +0200
+Subject: [PATCH] disable blog pagination
+
+---
+ layouts/partials/paginationPost.html | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/layouts/partials/paginationPost.html b/layouts/partials/paginationPost.html
+index 92582d3..b105a6d 100644
+--- a/layouts/partials/paginationPost.html
++++ b/layouts/partials/paginationPost.html
+@@ -1,4 +1,5 @@
+ {{ if or ( .PrevInSection ) ( .NextInSection ) }}
++<!-- disable blog pagination
+     <div class="pagination post-pagination">
+         <div class="left pagination-item {{ if not .NextInSection }}disabled{{ end }}">
+             {{ if .NextInSection }}
+@@ -11,6 +12,7 @@
+             {{ end }}
+         </div>
+     </div>
++-->
+ {{ end }}
+ 
+ {{ partial "pagination-extra.html" . }}
+-- 
+2.25.1
+

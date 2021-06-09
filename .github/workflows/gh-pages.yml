@@ -20,6 +20,9 @@ jobs:
           hugo-version: 'latest'
           # extended: true
 
+      - name: Patch
+        run: cd ./portfolio/themes/anubis/ && git checkout . && git apply ../disable-pagination.patch
+
       - name: Build
         run: make doc-build -C ./portfolio HUGO_OPTS="--baseURL https":"//nokx5.github.io/nokx5/"
 
