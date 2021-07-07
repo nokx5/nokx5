@@ -2,6 +2,6 @@
 
 with pkgs;
 mkShell {
-  nativeBuildInputs = [ typora ];
+  nativeBuildInputs = [ lftp typora ];
   buildInputs = [ hugo ];
 }

@@ -27,3 +27,12 @@ clean:
 .PHONY: clean-all
 clean-all:
 	rm -rf $(DESTINATION)
+
+info:
+	echo "STAGING at https://nokx5.github.io/nokx5/ (automatic github action)"
+	echo "PRODUCT at https://nokx.ch/portfolio (manual)"
+	echo "make doc-build HUGO_OPTS=\"--baseURL https://nokx.ch/portfolio\""
+	echo "cd target-doc && mv public portfolio"
+	echo "lftp nokx.ch -u s618x_USER"
+	echo "# rm -r portfolio"
+	echo "# mirror -R portfolio portfolio"
