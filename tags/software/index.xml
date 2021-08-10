@@ -5,7 +5,9 @@
 &lt;p>The important things with coding is to have some on-going projects. However it is generally difficult to code on very different projects at the same time. 😺&lt;/p>
 &lt;p>I&amp;rsquo;m currently fascinated by &lt;a href="https://nixos.org/">nix ❄️&lt;/a> and consider it as a possible solution for code reproducibility in science. I like creating Docker or App images directly from nix, this concept of one language to rule them all sounds very promising. I&amp;rsquo;m now concerned about moving to cloud services such as AWS or Azure and becoming a CloudOps.&lt;/p>
 &lt;h3 id="list-of-nokx-software">List of nokx software&lt;/h3>
-&lt;hr>
+&lt;p>⭐ &lt;a href="https://github.com/nokx5/nokxpkgs">nokxpkgs&lt;/a> | 📚 &lt;del>&lt;strong>doc&lt;/strong>&lt;/del> | &lt;em>nix channel for nokx software - build latest nokx software on darwin and linux easily with &lt;strong>nix&lt;/strong>.&lt;/em>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">nix-build -I nixpkgs&lt;span style="color:#f92672">=&lt;/span>https://github.com/nokx5/nokxpkgs/archive/main.tar.gz --expr &lt;span style="color:#e6db74">&amp;#39;(import &amp;lt;nixpkgs&amp;gt; {}).all-nokx&amp;#39;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;hr>
 &lt;p>&lt;strong>Uncategorized&lt;/strong>&lt;/p>
 &lt;p>☁️ Fast Application Of Quantum Gates | 📚 &lt;del>&lt;strong>doc&lt;/strong>&lt;/del> | &lt;em>I would like to optimize few routines in very hard tasks. The Hilbert space grows exponentially fast.&lt;/em>&lt;/p>
 &lt;hr>
@@ -23,8 +25,11 @@
 &lt;p>&lt;a href="https://github.com/nokx5/golden-python">⭐ golden-python&lt;/a> | &lt;a href="https://nokx5.github.io/golden-python">📚 &lt;strong>doc&lt;/strong>&lt;/a> | &lt;em>template for python projects&lt;/em> | check out some &lt;a href="https://nokx5.github.io/golden-python/examples/index.html">good practice&lt;/a>&lt;/p>
 &lt;p>&lt;a href="https://github.com/nokx5/speedo">⭐ speedo&lt;/a> | 📚 &lt;strong>doc (swagger API)&lt;/strong> | &lt;em>speedo is a web framework using &lt;code>fastapi&lt;/code> connected to a &lt;code>postgresql&lt;/code> database. A python client library using &lt;code>pycurl&lt;/code> is provided with a mocker using in-memory sqlite for external dependencies.&lt;/em>&lt;/p>
 &lt;hr>
+&lt;p>&lt;strong>Ruby projects&lt;/strong>&lt;/p>
+&lt;p>&lt;a href="https://github.com/nokx5/golden-ruby">🔨 golden-ruby (template)&lt;/a> | 📚 &lt;del>&lt;strong>doc&lt;/strong>&lt;/del> | &lt;em>template for ruby projects&lt;/em>&lt;/p>
+&lt;hr>
 &lt;p>&lt;strong>Rust projects&lt;/strong>&lt;/p>
-&lt;p>&lt;a href="https://github.com/nokx5/golden-rust">🔨 golden-rust (template)&lt;/a> | 📚 &lt;del>&lt;strong>doc&lt;/strong>&lt;/del> | &lt;em>template for rust projects&lt;/em>&lt;/p>
+&lt;p>&lt;a href="https://github.com/nokx5/golden-rust">⭐ golden-rust (template)&lt;/a> | 📚 &lt;del>&lt;strong>doc&lt;/strong>&lt;/del> | &lt;em>template for rust projects&lt;/em>&lt;/p>
 &lt;p>&lt;a href="https://github.com/nokx5/moonraker">🚗 moonraker&lt;/a> | 📚 &lt;del>&lt;strong>doc&lt;/strong>&lt;/del> | &lt;em>a modern web framework using rocket&lt;/em>&lt;/p>
 &lt;hr>
 &lt;p>&lt;strong>Scripts &amp;amp; Automation&lt;/strong>&lt;/p>

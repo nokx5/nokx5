@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>nix on nokx ברוכים הבאים ל</title><link>https://nokx5.github.io/nokx5/he/tags/nix/</link><description>nokx ברוכים הבאים ל (nix)</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 01 Jun 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://nokx5.github.io/nokx5/he/tags/nix/index.xml" rel="self" type="application/rss+xml"/><item><title>A short nix story for beginners</title><link>https://nokx5.github.io/nokx5/he/blog/nix-investigation/</link><pubDate>Tue, 01 Jun 2021 00:00:00 +0000</pubDate><guid>https://nokx5.github.io/nokx5/he/blog/nix-investigation/</guid><description>&lt;p>Nix is a great tool towards reproducible code. However the learning curve can be long. In this post, we will resume the different step we encounter and give motivation to start with nix.&lt;/p>
 &lt;h3 id="installuninstall-nix">Install/Uninstall nix&lt;/h3>
 &lt;p>In the following we will use the single user installation to avoid problems of owners and groups. Nix is simple to install (you need &lt;code>sudo&lt;/code> access to &lt;code>root&lt;/code>)&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ curl -L https://nixos.org/nix/install | sh
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ curl -L https://nixos.org/nix/install | sh
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>You can test that nix works with a command like&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ nix-shell -p hello --run hello
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ nix-shell -p hello --run hello
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>To uninstall, simply remove the &lt;code>/nix&lt;/code> folder and associate configuration files.&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ rm -rf /nix ~/.nix* ~/.config/nix*
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ rm -rf /nix ~/.nix* ~/.config/nix*
 &lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="develop-with-a-nix-shell">Develop with a nix-shell&lt;/h1>
 &lt;p>The easiest way to start developing with nix is to copy a working template.&lt;/p>
 &lt;p>Let&amp;rsquo;s save the following in a &lt;code>shell.nix&lt;/code> file.&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-nix" data-lang="nix">{ pkgs &lt;span style="color:#f92672">?&lt;/span> &lt;span style="color:#f92672">import&lt;/span> &lt;span style="color:#e6db74">&amp;lt;nixpkgs&amp;gt;&lt;/span> { } }: &lt;span style="color:#75715e"># 1&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-nix" data-lang="nix">{ pkgs &lt;span style="color:#f92672">?&lt;/span> &lt;span style="color:#f92672">import&lt;/span> &lt;span style="color:#e6db74">&amp;lt;nixpkgs&amp;gt;&lt;/span> { } }: &lt;span style="color:#75715e"># 1&lt;/span>
 &lt;span style="color:#66d9ef">with&lt;/span> pkgs;
 mkShell { &lt;span style="color:#75715e"># 2&lt;/span>
 nativeBuildInputs &lt;span style="color:#f92672">=&lt;/span> [ pkgconfig ]; &lt;span style="color:#75715e"># 3&lt;/span>
@@ -23,32 +23,32 @@ buildInputs &lt;span style="color:#f92672">=&lt;/span> [ zlib ]; &lt;span style=
 &lt;li>&lt;code>buildInputs = [ boost17x ];&lt;/code> are available as program or library (at runtime).&lt;/li>
 &lt;/ol>
 &lt;p>We now can enter the development environment using nix. The first time, you will have to wait for the nix dependencies to be downloaded&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ nix-shell shell.nix --pure &lt;span style="color:#75715e"># purity means isolation from the rest of the system&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ nix-shell shell.nix --pure &lt;span style="color:#75715e"># purity means isolation from the rest of the system&lt;/span>
 &amp;gt; pkg-config --list-all
 zlib zlib - zlib compression library
 &amp;gt; exit
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>This sounds great ! But even better, try to rerun &lt;code>nix-shell&lt;/code>, all dependencies are stored in the &lt;code>/nix/store/&lt;/code> already ! 😄&lt;/p>
 &lt;h3 id="small-digression-about-the-nix-store">Small digression about the nix store&lt;/h3>
 &lt;p>The softwares are stored in &lt;code>/nix/store/&lt;/code> with prefix hashes using &lt;code>NAR&lt;/code> deterministic archiving and nix derivations &lt;code>drv&lt;/code> organization. This means that we can now have multiple version of the same software (&lt;code>gcc8&lt;/code>, &lt;code>gcc9&lt;/code>, &amp;hellip;) working without conflicting in nix. The amount of software downloaded can be quite large. Nix provide a cleaning of the nix store using garbage collection for useless legacy dependencies.&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ nix-collect-garbage -d
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ nix-collect-garbage -d
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>This will remove all non used derivations in the nix store.&lt;/p>
 &lt;p>Have a try and rerun the &lt;code>nix-shell&lt;/code> command.&lt;/p>
 &lt;h1 id="more-channels">More channels&lt;/h1>
 &lt;p>Now that you know how to collect garbage, let&amp;rsquo;s try to update the version of the channel &lt;code>&amp;lt;nixpkgs&amp;gt;&lt;/code>. But first what is &lt;code>&amp;lt;nixpkgs&amp;gt;&lt;/code>&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ nix-channel --list
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ nix-channel --list
 nixpkgs https://nixos.org/channels/nixpkgs-unstable
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>here, &lt;code>&amp;lt;nixpkgs&amp;gt;&lt;/code> will point to the &lt;code>nixpkgs-unstable&lt;/code> branch of the official nixpkgs repository. The &lt;em>unstable&lt;/em> here means that this branch evolve fast. This means that if you update the channel a week later,&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ nix-channel --update
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ nix-channel --update
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>any default software could have been upgraded meanwhile, which force you to download the software again with a new &lt;code>hash&lt;/code> in the &lt;code>/nix/store/&lt;/code>.&lt;/p>
 &lt;p>In order to avoid changing the software while developing, one can pin a specific channel version and freeze the whole environment (this become always reproducible). Here is an example.&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-nix" data-lang="nix">{ pkgs &lt;span style="color:#f92672">?&lt;/span> &lt;span style="color:#f92672">import&lt;/span> (fetchTarball {
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-nix" data-lang="nix">{ pkgs &lt;span style="color:#f92672">?&lt;/span> &lt;span style="color:#f92672">import&lt;/span> (fetchTarball {
 url &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#34;https://github.com/NixOS/nixpkgs/archive/5272327b81ed355bbed5659b8d303cf2979b6953.tar.gz&amp;#34;&lt;/span>;
 sha256 &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#34;sha256:0182ys095dfx02vl2a20j1hz92dx3mfgz2a6fhn31bqlp1wa8hlq&amp;#34;&lt;/span>;
 }) { } }:
 pkgs&lt;span style="color:#f92672">.&lt;/span>mkShell { nativeBuildInputs &lt;span style="color:#f92672">=&lt;/span> [ pkgs&lt;span style="color:#f92672">.&lt;/span>nix ]; }
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>Funny, we can download nix in nix. Providing a &lt;code>sha256&lt;/code> ensure that nix remain pure since it knows at that moment, that the &lt;code>NAR hash&lt;/code> of that channel could not conflict. This channel corresponds to the &lt;code>NixOS 20.03&lt;/code> release and all &lt;code>pkgs&lt;/code> there are pinned to that release. You could run this in two years, no problem for nix.&lt;/p>
 &lt;p>If you do not want to pin a specific version but you would like to jump from the unstable to the stable channel for a try, you can set the nix-channel for a specific command using the first &lt;code>shell.nix&lt;/code> example.&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ nix-shell -I nixpkgs&lt;span style="color:#f92672">=&lt;/span>https://github.com/NixOS/nixpkgs/archive/5272327b81ed355bbed5659b8d303cf2979b6953.tar.gz
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ nix-shell -I nixpkgs&lt;span style="color:#f92672">=&lt;/span>https://github.com/NixOS/nixpkgs/archive/5272327b81ed355bbed5659b8d303cf2979b6953.tar.gz
 &lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="this-nix-warm-up-stops-here">This nix warm-up stops here.&lt;/h1>
 &lt;p>With this tutorial, I hope I gave newcomers motivation to start with nix, there is still a long obscure path towards mastering those tools. You can start reading the &lt;a href="https://nixos.org/guides/nix-pills/">nix pills&lt;/a>, read it slowly and carefully, don&amp;rsquo;t get discouraged.&lt;/p>
 &lt;p>I would encourage you to learn after the nix pills the following in the right order.&lt;/p>

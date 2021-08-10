@@ -170,15 +170,15 @@
             <p>Nix is a great tool towards reproducible code. However the learning curve can be long. In this post, we will resume the different step we encounter and give motivation to start with nix.</p>
 <h3 id="installuninstall-nix">Install/Uninstall nix</h3>
 <p>In the following we will use the single user installation to avoid problems of owners and groups. Nix is simple to install (you need <code>sudo</code> access to <code>root</code>)</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ curl -L https://nixos.org/nix/install | sh
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ curl -L https://nixos.org/nix/install | sh
 </code></pre></div><p>You can test that nix works with a command like</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ nix-shell -p hello --run hello
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ nix-shell -p hello --run hello
 </code></pre></div><p>To uninstall, simply remove the <code>/nix</code> folder and associate configuration files.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ rm -rf /nix ~/.nix* ~/.config/nix*
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ rm -rf /nix ~/.nix* ~/.config/nix*
 </code></pre></div><h1 id="develop-with-a-nix-shell">Develop with a nix-shell</h1>
 <p>The easiest way to start developing with nix is to copy a working template.</p>
 <p>Let&rsquo;s save the following in a <code>shell.nix</code> file.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-nix" data-lang="nix">{ pkgs <span style="color:#f92672">?</span> <span style="color:#f92672">import</span> <span style="color:#e6db74">&lt;nixpkgs&gt;</span> { } }: <span style="color:#75715e"># 1</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-nix" data-lang="nix">{ pkgs <span style="color:#f92672">?</span> <span style="color:#f92672">import</span> <span style="color:#e6db74">&lt;nixpkgs&gt;</span> { } }: <span style="color:#75715e"># 1</span>
 
 <span style="color:#66d9ef">with</span> pkgs;
 
@@ -194,25 +194,25 @@ mkShell { <span style="color:#75715e"># 2</span>
 <li><code>buildInputs = [ boost17x ];</code> are available as program or library (at runtime).</li>
 </ol>
 <p>We now can enter the development environment using nix. The first time, you will have to wait for the nix dependencies to be downloaded</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ nix-shell shell.nix --pure <span style="color:#75715e"># purity means isolation from the rest of the system</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ nix-shell shell.nix --pure <span style="color:#75715e"># purity means isolation from the rest of the system</span>
 &gt; pkg-config --list-all
 zlib zlib - zlib compression library
 &gt; exit
 </code></pre></div><p>This sounds great ! But even better, try to rerun <code>nix-shell</code>, all dependencies are stored in the <code>/nix/store/</code>  already ! 😄</p>
 <h3 id="small-digression-about-the-nix-store">Small digression about the nix store</h3>
 <p>The softwares are stored in <code>/nix/store/</code> with prefix hashes using <code>NAR</code> deterministic archiving and nix derivations <code>drv</code> organization. This means that we can now have multiple version of the same software (<code>gcc8</code>, <code>gcc9</code>, &hellip;) working without conflicting in nix. The amount of software downloaded can be quite large. Nix provide a cleaning of the nix store using garbage collection for useless legacy dependencies.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ nix-collect-garbage -d
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ nix-collect-garbage -d
 </code></pre></div><p>This will remove all non used derivations in the nix store.</p>
 <p>Have a try and rerun the <code>nix-shell</code> command.</p>
 <h1 id="more-channels">More channels</h1>
 <p>Now that you know how to collect garbage, let&rsquo;s try to update the version of the channel <code>&lt;nixpkgs&gt;</code>. But first what is <code>&lt;nixpkgs&gt;</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ nix-channel --list
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ nix-channel --list
 nixpkgs https://nixos.org/channels/nixpkgs-unstable
 </code></pre></div><p>here, <code>&lt;nixpkgs&gt;</code> will point to the <code>nixpkgs-unstable</code> branch of the official nixpkgs repository. The <em>unstable</em> here means that this branch evolve fast. This means that if you update the channel a week later,</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ nix-channel --update
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ nix-channel --update
 </code></pre></div><p>any default software could have been upgraded meanwhile, which force you to download the software again with a new <code>hash</code> in the <code>/nix/store/</code>.</p>
 <p>In order to avoid changing the software while developing, one can pin a specific channel version and freeze the whole environment (this become always reproducible). Here is an example.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-nix" data-lang="nix">{ pkgs <span style="color:#f92672">?</span> <span style="color:#f92672">import</span> (fetchTarball {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-nix" data-lang="nix">{ pkgs <span style="color:#f92672">?</span> <span style="color:#f92672">import</span> (fetchTarball {
   url <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;https://github.com/NixOS/nixpkgs/archive/5272327b81ed355bbed5659b8d303cf2979b6953.tar.gz&#34;</span>;
   sha256 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;sha256:0182ys095dfx02vl2a20j1hz92dx3mfgz2a6fhn31bqlp1wa8hlq&#34;</span>;
 }) { } }:
@@ -220,7 +220,7 @@ nixpkgs https://nixos.org/channels/nixpkgs-unstable
 pkgs<span style="color:#f92672">.</span>mkShell { nativeBuildInputs <span style="color:#f92672">=</span> [ pkgs<span style="color:#f92672">.</span>nix ]; }
 </code></pre></div><p>Funny, we can download nix in nix. Providing a <code>sha256</code> ensure that nix remain pure since it knows at that moment, that the <code>NAR hash</code> of that channel could not conflict. This channel corresponds to the <code>NixOS 20.03</code> release and all <code>pkgs</code> there are pinned to that release. You could run this in two years, no problem for nix.</p>
 <p>If you do not want to pin a specific version but you would like to jump from the unstable to the stable channel for a try, you can set the nix-channel for a specific command using the first <code>shell.nix</code> example.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ nix-shell -I nixpkgs<span style="color:#f92672">=</span>https://github.com/NixOS/nixpkgs/archive/5272327b81ed355bbed5659b8d303cf2979b6953.tar.gz
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ nix-shell -I nixpkgs<span style="color:#f92672">=</span>https://github.com/NixOS/nixpkgs/archive/5272327b81ed355bbed5659b8d303cf2979b6953.tar.gz
 </code></pre></div><h1 id="this-nix-warm-up-stops-here">This nix warm-up stops here.</h1>
 <p>With this tutorial, I hope I gave newcomers motivation to start with nix, there is still a long obscure path towards mastering those tools. You can start reading the <a href="https://nixos.org/guides/nix-pills/">nix pills</a>, read it slowly and carefully, don&rsquo;t get discouraged.</p>
 <p>I would encourage you to learn after the nix pills the following in the right order.</p>

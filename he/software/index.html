@@ -174,7 +174,9 @@
 <p>The important things with coding is to have some on-going projects. However it is generally difficult to code on very different projects at the same time. 😺</p>
 <p>I&rsquo;m currently fascinated by <a href="https://nixos.org/">nix ❄️</a>  and consider it as a possible solution for code reproducibility in science. I like creating Docker or App images directly from nix, this concept of one language to rule them all sounds very promising. I&rsquo;m now concerned about moving to cloud services such as AWS or Azure and becoming a CloudOps.</p>
 <h3 id="list-of-nokx-software">List of nokx software</h3>
-<hr>
+<p>⭐ <a href="https://github.com/nokx5/nokxpkgs">nokxpkgs</a> |  📚 <del><strong>doc</strong></del>  |  <em>nix channel for nokx software - build latest nokx software on darwin and linux easily with <strong>nix</strong>.</em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">nix-build -I nixpkgs<span style="color:#f92672">=</span>https://github.com/nokx5/nokxpkgs/archive/main.tar.gz --expr <span style="color:#e6db74">&#39;(import &lt;nixpkgs&gt; {}).all-nokx&#39;</span>
+</code></pre></div><hr>
 <p><strong>Uncategorized</strong></p>
 <p>☁️ Fast Application Of Quantum Gates |  📚 <del><strong>doc</strong></del>  |  <em>I would like to optimize few routines in very hard tasks. The Hilbert space grows exponentially fast.</em></p>
 <hr>
@@ -192,8 +194,11 @@
 <p><a href="https://github.com/nokx5/golden-python">⭐ golden-python</a> | <a href="https://nokx5.github.io/golden-python">📚 <strong>doc</strong></a> | <em>template for python projects</em> | check out some <a href="https://nokx5.github.io/golden-python/examples/index.html">good practice</a></p>
 <p><a href="https://github.com/nokx5/speedo">⭐ speedo</a> | 📚 <strong>doc (swagger API)</strong> | <em>speedo is a web framework using <code>fastapi</code> connected to a <code>postgresql</code> database. A python client library using <code>pycurl</code> is provided with a mocker using in-memory sqlite for external dependencies.</em></p>
 <hr>
+<p><strong>Ruby projects</strong></p>
+<p><a href="https://github.com/nokx5/golden-ruby">🔨 golden-ruby (template)</a> | 📚 <del><strong>doc</strong></del> | <em>template for ruby projects</em></p>
+<hr>
 <p><strong>Rust projects</strong></p>
-<p><a href="https://github.com/nokx5/golden-rust">🔨 golden-rust (template)</a> | 📚 <del><strong>doc</strong></del> | <em>template for rust projects</em></p>
+<p><a href="https://github.com/nokx5/golden-rust">⭐ golden-rust (template)</a> | 📚 <del><strong>doc</strong></del> | <em>template for rust projects</em></p>
 <p><a href="https://github.com/nokx5/moonraker">🚗 moonraker</a> | 📚 <del><strong>doc</strong></del> | <em>a modern web framework using rocket</em></p>
 <hr>
 <p><strong>Scripts &amp; Automation</strong></p>
