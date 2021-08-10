@@ -22,6 +22,11 @@ I'm currently fascinated by [nix :snowflake:](https://nixos.org/)  and consider 
 
 ### List of nokx software
 
+:star: [nokxpkgs](https://github.com/nokx5/nokxpkgs) |  :books: ~~**doc**~~  |  *nix channel for nokx software - build latest nokx software on darwin and linux easily with **nix**.*
+```bash
+nix-build -I nixpkgs=https://github.com/nokx5/nokxpkgs/archive/main.tar.gz --expr '(import <nixpkgs> {}).all-nokx'
+```
+
 ***
 
 **Uncategorized**
@@ -52,11 +57,17 @@ I'm currently fascinated by [nix :snowflake:](https://nixos.org/)  and consider 
 
 [:star: speedo](https://github.com/nokx5/speedo) | :books: **doc (swagger API)** | *speedo is a web framework using `fastapi` connected to a `postgresql` database. A python client library using `pycurl` is provided with a mocker using in-memory sqlite for external dependencies.*
 
----
+***
+
+**Ruby projects**
+
+[:hammer: golden-ruby (template)](https://github.com/nokx5/golden-ruby) | :books: ~~**doc**~~ | *template for ruby projects*
+
+***
 
 **Rust projects**
 
-[:hammer: golden-rust (template)](https://github.com/nokx5/golden-rust) | :books: ~~**doc**~~ | *template for rust projects*
+[:star: golden-rust (template)](https://github.com/nokx5/golden-rust) | :books: ~~**doc**~~ | *template for rust projects*
 
 [:car: moonraker](https://github.com/nokx5/moonraker) | :books: ~~**doc**~~ | *a modern web framework using rocket*
 
